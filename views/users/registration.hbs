@@ -1,0 +1,57 @@
+<section >
+    <h4 class="text-warning" style="text-align: center;">Magic Book</h4>
+ <div class="signup-form">
+ <form action="" method="post">
+  <div class="mb-3 row">
+    <h5 id="Create-acc">Create Account</h5>
+    {{!-- <label for="staticEmail" class="col-sm-2 col-form-label">First Name</label> --}}
+    <div class="col-sm-10">
+      <input type="text"  class="form-control3" pattern="^[A-Za-z]+(([,.] |[ '-])[A-Za-z]+)*([.,'-]?)$" id="name" name="firstname" placeholder="First Name"
+									onfocus="this.placeholder = ''" title="Enter valid name" onblur="this.placeholder = 'Firstname'" required>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    {{!-- <label for="staticEmail" class="col-sm-2 col-form-label">Last Name</label> --}}
+    <div class="col-sm-10">
+      <input type="text"  class="form-control3" pattern="^[A-Za-z]+(([,.] |[ '-])[A-Za-z]+)*([.,'-]?)$" id="name" name="lastname" placeholder="Last Name"
+									onfocus="this.placeholder = ''" title="Enter valid name" onblur="this.placeholder = 'Lastnam'" required>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    {{!-- <label class="col-sm-2 col-form-label">Email</label> --}}
+    <div class="col-sm-10">
+      <input type="Email"  class="form-control3" pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"id="email" name="email" placeholder="Email"
+									onfocus="this.placeholder = ''" title="Enter a valid Email" onblur="this.placeholder = 'Password'" required>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    {{!-- <label  class="col-sm-2 col-form-label">Password</label> --}}
+    <div class="col-sm-10">
+      <input type="password"  class="form-control3" name="password" placeholder="Password"
+									pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$" onfocus="this.placeholder = ''"
+								 title="Password must include Uppercase, lowercase, number and character"	onblur="this.placeholder = 'Password'" required>
+    </div>
+  </div>
+
+   <div class="mb-3 row">
+    {{!-- <label  class="col-sm-2 col-form-label">Confirm Password</label> --}}
+    <div class="col-sm-10">
+      <input type="password" class="form-control3" name="cpassword" placeholder="confirm Password"
+									pattern="^.{6,}$" onfocus="this.placeholder = ''"
+								 title="Password must include Uppercase, lowercase, number and character"	onblur="this.placeholder = 'Password'" required>
+    </div>
+  </div>
+  
+  <div class="row sign-btn2">
+    <button type="submit" class="signup-btn btn-success">Signup</button>
+  </div>
+  </form>
+  </div>
+
+  <p style="color: red; text-align: center;">{{message}}</p>
+</section>
+
+

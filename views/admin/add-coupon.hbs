@@ -1,0 +1,21 @@
+<div class="container-fluid login-cont">
+        <div class="sub-container">
+            <div class="inner">
+                <form action="" method="post">
+                    <h2 class="text-center">Add Category</h2>
+                    <br>
+                    <input class="form-control2" type="text" name="code" placeholder="Enter Coupon Code" required>
+                    <br>    
+                    <input class="form-control2" type="date" name="date" placeholder="Enter expiry date of coupon" required>
+                    <br>
+                    <input class="form-control2" type="text" name="percent" placeholder="Enter Off Percent" required>
+                    <br>        
+                    <input type="submit" value="Add Coupon" class=" btn btn-success mt-2">
+                    <br>
+                    <span class="text-danger">{{message}}</span>
+                    <br><br>
+                    <a href="/admin/coupon" class="text-dark">Back</a>
+                </form>
+            </div>
+        </div>
+    </div>

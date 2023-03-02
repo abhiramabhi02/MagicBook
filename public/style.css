@@ -1,0 +1,120 @@
+body{
+    margin: 0;
+    overflow-x: hidden;
+}
+#logo{
+    width: 4em;
+    height: 2.5em;
+}
+.form-control1{
+    width: 70%;
+    
+  }
+  .col-form-label1{
+    margin-left: 0.25em;
+  }
+  .col-form-label{
+    margin-top: 0.5em;
+  }
+  .form-control{
+    width: 40%;
+    margin-top: 1em;
+    margin-left: 25em;
+  }
+  .form-control2{
+    width: 70%;
+    margin-top: 1em;
+  }
+  .form-control3{
+    width: 100%;
+    margin-top: 1em;
+    border-radius: 1em;
+    border: 1.3px solid black;
+    margin-left: 3em;
+  }
+  
+  .signup-form{
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 45%;
+    margin-left: 22em;
+  }
+  .form{
+    margin-top: 3em;
+    display: flex;
+    justify-content: center;
+  }
+  .sub-btn{
+    background-color: rgb(79, 225, 21);
+    color: #fff;
+    border: none;
+    border-radius: 1em;
+    width: 57%;
+  }
+  .form a{
+    text-decoration: none;
+  }
+  #Create-acc{
+    text-align: center;
+  }
+  .signup-btn{
+    background-color: rgb(17, 196, 184);
+    color: #fff;
+    border: none;
+    border-radius: 2em;
+    margin-bottom: 1em;
+    width: 15em;
+    margin-left: 6em;
+  }
+  .navbar-collapse{
+   display: flex;
+   margin-left: 10em;
+   
+  }
+  .searchbar{
+    margin-left: 16em;
+  }
+  .searchbtn{
+    height: 2.5em;
+    margin-top: 1em;
+  }
+  .products{
+    display: flex;
+    justify-content: center;
+    color: black;
+  }
+  .card-title{
+    font-size: 1rem;
+  }
+  .card{
+    margin-left: 2em;
+  }
+ #but{
+  width: 10vw;
+  float: right;
+ }
+ .tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+.mgadmin{
+  margin-right: 5em;
+}
+.adminnav{
+  display: flex;
+  margin-left: 20em;
+}
+.usericon{
+  font-size: 3em;
+  color: rgb(71, 81, 61);
+}
+/* .bgadlog{
+  background-image: url(https://miro.medium.com/v2/resize:fit:1100/format:webp/1*dP81IJq-tGFxy1rIK3RYsg.png);
+} */
+
+
+

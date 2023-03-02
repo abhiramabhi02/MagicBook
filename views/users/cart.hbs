@@ -1,0 +1,221 @@
+<section class="h-100 gradient-custom">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center my-4">
+      <div class="col-md-8">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Cart</h5>
+          </div>
+          <div class="card-body">
+            <!-- Single item -->
+            {{#each cartProducts}}
+            <div class="row">
+              <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                <!-- Image -->
+
+                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                  <img src="/productImages/{{this.Image}}" class="w-100 " alt="..." />
+                  <a href="#!">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                  </a>
+                </div>
+                <!-- Image -->
+              </div>
+
+              <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                <!-- Data -->
+                <p><strong>{{this.Name}} <br>{{this.Price}} <br>{{this.Category}} </strong></p>
+                <button type="button" class="btn btn-primary " title="Remove item"
+                  onclick="removeCartProduct('{{_id}}')">
+                  <i class="fas fa-trash"></i>
+                </button>
+                <!-- Data -->
+              </div>
+              <form action="/checkout" method="post">
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                  <!-- Quantity -->
+                  <div class="d-flex mb-4" style="max-width: 300px">
+                    <div class="form-outline">
+                      <label class="form-label" for="quantity">Quantity</label>
+                    
+                      <input class="form-controlqty" type="number" id="{{this._id}}" min="1" name="quantity"
+                        pattern="{{this._id}}" max=" {{this.Stock}}" value="1" onchange="validateData('{{_id}}')" >
+                      <span id="price_text_{{this._id}}">{{this.Price}} </span>
+                    </div>
+                    <div class="form-outline">
+                      <div class="fs-lg text-accent pt-2 price">
+                        <div id="get">
+                          <p id="actual_price_{{this._id}}" hidden="">{{this.Price}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            {{/each}}
+            <!-- Single item -->
+            <hr class="my-4" />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Order Summary</h5>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                Sub Total
+                ₹<h3 id="subtotal" class="fw-normal">{{subtotal}}</h3>
+              </li>
+            </ul>
+            {{#unless subtotal}}
+            <button type="button" class="btn btn-primary btn-lg btn-block disabled ">
+              Checkout
+            </button>
+            {{else}}
+            <button type="submit" class="btn btn-primary btn-lg btn-block">
+              Checkout
+            </button>
+            {{/unless}}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>   
+<script>
+  async function removeCartProduct(cartProductid) {
+    let response = await fetch('/removecartproduct/' + cartProductid, {
+      method: 'DELETE', headers: {
+        'Content-Type': 'application/json',
+      },
+    }); 
+    let res = await response.json();
+    if (res == "success") { window.location.reload() }
+  }
+
+  async function checkCoupon()
+    {
+        console.log("180 check >>")
+        const coupon=document.getElementById('couponCode').value;
+        console.log(coupon)
+        let valCoupon = await fetch('/validateCoupon', {
+            method: 'POST', 
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({code:coupon}),  
+        });
+        let response=await valCoupon.json()
+       
+        if(response=="fail")
+        {
+            document.getElementById("errorMessage").innerHTML="Coupon Invalid";
+            
+        }
+        else
+        {
+          
+           let offer = document.getElementById("offer").innerHTML=Number(-response)
+            console.log(Number(response))
+
+            let subtotal = document.getElementById('subtotal').innerHTML
+           
+           let total = document.getElementById('total').innerHTML
+
+           total = Number(subtotal) + Number(offer)
+
+           document.getElementById('total').innerHTML = total
+
+            console.log(total,subtotal,offer,"109")
+        }
+    }
+  
+
+
+  function validateData(id) {
+    const element = document.getElementById(id)
+    const priceText = document.getElementById('price_text_' + id)
+    const price = document.getElementById('actual_price_' + id)
+    const subtotal = document.getElementById('subtotal')
+    if (Number(element.value) > Number(element.max))
+      element.value = element.max
+    const rate = priceText.innerHTML
+    priceText.innerHTML = Number(price.innerHTML) * Number(element.value)
+    const diff = Number(priceText.innerHTML) - Number(rate)
+    subtotal.innerHTML = Number(diff) + Number(subtotal.innerHTML)
+
+    async function proceedTocheckout() {
+      const quantity = Object.values(document.getElementsByName('quantity')).map((cartProduct) => (
+        {
+          cartProductid: cartProduct.id,
+          quantity: cartProduct.value
+        }
+      ))
+
+      let response = await fetch('/proceedtocheckout', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(quantity)
+      });
+
+    }
+  } 
+</script>
+
+
+ {{!-- <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                Offer
+                <h3 id="offer" class="fw-normal">{{offer}}</h3>
+              </li>
+
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                <div>
+                  <strong>Total amount</strong>
+
+                </div>
+                <h3 id="total" class="fw-normal">{{total}}</h3>
+
+              </li> --}}
+
+      {{!-- <div class="card-body">
+
+            <ul class="list-group list-group-flush">
+
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                Code
+                <input type="text" id="couponCode">
+                <br>
+              </li>
+              <br>
+            </ul>
+            <button id="applyCodeBtn" class="btn btn-dark btn-lg btn-block" onclick="checkCoupon()">
+              Apply Code
+            </button>
+            <span id="errorMessage"></span>
+
+          </div> --}}
+
+
+
+
+
+          {{!-- async function checkCoupon() {
+    console.log(12 00)
+    const coupon = document.getElementById('couponCode').value;
+    console.log(coupon)
+    let valCoupon = await fetch('/validateCoupon', {
+      method: 'POST',
+      headers: { 'content-Type': 'application/json' },
+      body: JSON.stringify({ code: coupon }),
+    })
+    let response = await valCoupon.json()
+
+    if (response == "fail") {
+      document.getElementById('errorMessage').innerHTML = "Coupon Invalid";
+    } else {
+      document.getElementById("offer").value = Number(response) / 100
+      console.log(Number(response / 100))
+    }
+  } --}}

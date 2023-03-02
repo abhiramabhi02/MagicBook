@@ -1,0 +1,116 @@
+{{!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="#!">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">All Products</a></li>
+                        <li>
+                            <hr class="dropdown-divider" />
+                        </li>
+                        <li><a class="dropdown-item" href="#!">Popular Items</a></li>
+                        <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <button class="btn btn-outline-dark" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    Cart
+                    <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</nav> --}}
+<!-- Header-->
+<header class="bg-dark py-5 mb-3">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">All Your Books Are Here</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Shop the books from Magic Book</p>
+        </div>
+    </div>
+</header>
+
+<section class="categories">
+
+    {{!-- <select class="form-select" aria-label="Default select example">
+        
+        {{#each category}}
+        <a href="/categorywise?id={{this._id}}"><option>{{this.Name}}</option></a>
+    
+     {{/each}}
+     </select> --}}
+
+    <div class="dropdown mx-5">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Category
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                        {{#each category}}
+                        <li><a class="dropdown-item active"
+                                href="/categorywise?id={{_id}}">{{this.Name}}</a></li>
+                       {{/each}}
+                    </ul>
+                     
+                </div>
+</section>
+
+<!-- Section-->
+<section class="owl-carousel active-product-area section_gap">
+    <!-- single product slide -->
+    <div class="single-product-slider">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div class="section-title">
+                        {{!-- <h1>Products</h1> --}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- single product -->
+                {{#each Product}}
+                <div class="col-lg-3 col-md-6 mt-5">
+                    <div class="single-product">
+                        <a href="/productpage?id={{this._id}}"><img class="img" style="height: 180px;"
+                                src="/productImages/{{this.Image}}" alt=""></a>
+                        <div class="product-details">
+                            <h6 style="font-size: 0.7rem;">{{this.Name}}</h6>
+                            <div class="price">
+                                <h6>₹{{this.Price}}</h6>
+
+                            </div>
+                            <div class="prd-bottom">
+
+                                <a href="addtocart?id={{this._id}}" class="social-info">
+
+                                    <p class="hover-text btn btn-primary" style="text-decoration: none; color:black"><i
+                                            class="fa-solid fa-cart-shopping"></i></p>
+                                </a>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+
+
+</section>
+<!-- Footer-->
+<footer class="py-5 bg-dark mt-5">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Magic Book 2023</p>
+    </div>
+</footer>

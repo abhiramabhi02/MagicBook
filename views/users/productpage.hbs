@@ -1,0 +1,48 @@
+<body>
+    <div class="container mt-5 mb-5">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-6 border-end">
+                    <div class="d-flex flex-column justify-content-center">
+                        <div class="main_image"> <img src="/productImages/{{products.Image}}"
+                                id="main_product_image" width="350"> </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="p-3 right-side">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h3>{{products.Name}}</h3> <span class="heart"><i class='bx bx-heart'></i></span>
+                        </div>
+                        {{!-- <div class="mt-2 pr-3 content">
+                            <h4>{{products.Category.[0].Name}}</h4>
+                        </div> --}}
+                        <div class="ratings d-flex flex-row align-items-center">
+                            <div class="d-flex flex-row"> <i class='bx bxs-star'></i> <i class='bx bxs-star'></i> <i
+                                    class='bx bxs-star'></i> <i class='bx bxs-star'></i> <i class='bx bx-star'></i>
+                            </div> <span>441 reviews</span>
+                        </div>
+                        <h3>₹{{products.Price}}</h3>
+                        <div class="mt-5"> <span class="fw-bold">Description</span>
+                            <div class="colors">
+                                <p>{{products.Description}}</p>
+                            </div>
+                        </div>
+                        <div class=" d-flex flex-row mt-5 gap-3"> 
+                            {{!-- <a href="" class="btn btn-outline-dark">Buy Now</a> --}}
+                            <a href="/addtocart?id={{products._id}}" class="btn btn-dark">Add to Cart</a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function changeImage(element) {
+
+            var main_prodcut_image = document.getElementById('main_product_image');
+            main_prodcut_image.src = element.src;
+
+        }
+
+    </script>
+</body>

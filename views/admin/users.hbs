@@ -1,0 +1,36 @@
+
+<table class="table table-hover" id="mytable">
+  <thead>
+    <tr>
+     
+      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">Email</th>
+      <th scope="col">Verified</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  {{#each users}}
+  <tbody>
+    <tr>
+      <td>{{this.Firstname}}</td>
+      <td>{{this.Lastname}}</td>
+      <td>{{this.Email}}</td>
+      <td>{{this.is_verified}}</td>
+      <td>
+        {{#if this.Block}}
+        <a href="/admin/unblockuser?id={{this._id}}" class="btn btn-success" onclick="return confirm('Are you sure?')">Unblock</a>
+        {{else}}
+          <a href="/admin/blockuser?id={{this._id}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Block</a>
+          {{/if}}
+      </td>
+    </tr>
+  </tbody>
+  {{/each}}
+</table>
+
+<script>
+$(document).ready( function () {
+$('#mytable').DataTable();
+});
+</script>

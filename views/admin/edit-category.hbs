@@ -1,0 +1,18 @@
+   <div class="container-fluid login-cont">
+        <div class="sub-container">
+            <div class="inner">
+                <form action="" method="post">
+                    <h2 class="text-center">Edit Category</h2>
+                    <br>
+                    <input class="form-control2" type="text" name="name" placeholder="enter category name" value="{{category.name}}" required>
+                    <br>               
+                    <input type="submit" value="Save" class="form-control1 btn btn-success mt-2">
+                    <input type="hidden" name="id" value="{{category._id}}">
+                    <br>
+                    <span class="text-danger">{{message}}</span>
+                    <br>
+                    <a href="/admin/category" class="text-dark">Back</a>
+                </form>
+            </div>
+        </div>
+    </div>

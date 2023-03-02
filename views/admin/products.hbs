@@ -1,0 +1,54 @@
+
+<div class="row" id="but"><a href="/admin/addproduct" class="btn btn-success  ">Add Product</a></div>
+
+<table class="table table-hover" id="mytable">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Price</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Description</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  {{#each products}}
+  <tbody>
+    <tr>
+      <td><img src="/productImages/{{this.Image}}" width="100px" height="100px"></td>
+      <td>{{this.Name}}</td>
+      <td>{{category.[0].Name}}</td>
+      <td>{{this.Price}}</td>
+      <td>{{this.Stock}}</td>
+      <td style="font-size: 12px;">{{this.Description}}</td>
+   
+      <td>
+        <a href="/admin/editproduct?id={{this._id}}" class="btn btn-primary" onclick="return confirm('Are you sure?')">Edit</a>
+        <a href="/admin/deleteproduct?id={{this._id}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+  {{/each}}
+</table>
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" data-bs-backdrop="static"
+                data-bs-keyboard="false" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <h5> <strong>Are you sure to Logout ?</strong></h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <a class="btn btn-danger" href="/admin/logout" role="button">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<script>
+$(document).ready( function () {
+$('#mytable').DataTable();
+});
+</script>

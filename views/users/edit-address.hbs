@@ -1,0 +1,38 @@
+<section>
+     <div class="container-fluid login-cont">
+        <div class="sub-container">
+            <div class="inner">
+                <form action="" method="post">
+                    <h2 class="text-center text-warning">Magic Book</h2>
+                    <span class="text-danger">{{message}}</span>
+                    <br>
+                    <h4 class="text-center">Edit address</h4>
+                    <br>
+                    <input class="form-control" type="text" name="name" placeholder="enter name"
+                        pattern="^[A-Za-z]+(([,.] |[ '-])[A-Za-z]+)*([.,'-]?)$"  value="{{address.name}}" required>
+                    <br>
+                    <input class="form-control" type="text" name="number" placeholder="enter mobile number" value="{{address.number}}"
+                         required>
+                    <br>
+                    <input class="form-control" type="text" name="house" placeholder="enter house no. building name" value="{{address.house}}"
+                         required>
+                    <br>
+                    <input class="form-control" type="text" name="city" placeholder="enter city / town" value="{{address.city}}"
+                         required>
+                    <br>
+                    <input class="form-control" type="text" name="state" placeholder="enter your state" value="{{address.state}}"
+                        required>
+                    <br>
+                    <input class="form-control" type="text" name="country" placeholder="enter your country" value="{{address.country}}"
+                         required>
+                    <br>
+                    <input class="form-control" type="text" name="pincode" placeholder="enter your pincode" value="{{address.pincode}}"
+                         required>
+                    <br>
+                    
+                    <input type="submit" value="Save address" class=" btn btn-success form-control mt-2">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

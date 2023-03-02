@@ -1,0 +1,35 @@
+<div class="bgadlog">
+
+<h2 class="text-warning mgadmin" style="text-align: center;">Magic Book</h2>
+
+<div class="form">
+
+  <form action="" class="col-md-4 mt-5"  method="post">
+  <div class="mb-3 row">
+    <h5>Admin Login</h5>
+    <label class="col-sm-2 col-form-label1">Email</label>
+    <div class="col-sm-10">
+      <input type="Email" required name="email" class="form-control1">
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label1">Password</label>
+    <div class="col-sm-10">
+      <input type="password" required name="password" class="form-control1">
+    </div>
+  </div>
+    <button type="submit" class="sub-btn">Login</button>
+     
+      
+    
+    {{#if message}}
+    <p class="text-success">{{message}}</p>
+    {{else if error}}
+    <p class="text-danger">{{error}}</p>
+    {{/if}}
+
+      
+  </form>
+    
+  </div>
+  </div>

@@ -1,0 +1,311 @@
+<body class="page-template belle">
+    <div class="pageWrapper">
+
+
+        <!--Body Content-->
+        <div id="page-content">
+            <!--Page Title-->
+            <div class="page section-header text-center">
+                <div class="page-title">
+                    <div class="wrapper"></div>
+                </div>
+            </div>
+            <!--End Page Title-->
+
+            <div class="container">
+
+
+                <div class="row billing-fields">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
+                        <div class="create-ac-content bg-light-gray padding-20px-all">
+                            <form class="row g-3">
+                                <h2 class="login-title mb-3">Billing details</h2>
+                                {{!-- <div class="col-md-6">
+                                    <label for="inputEmail4" class="form-label">First Name</label>
+                                    <input type="email" class="form-control" id="inputEmail4">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputPassword4" class="form-label">Last Name</label>
+                                    <input type="password" class="form-control" id="inputPassword4">
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputAddress" class="form-label">Address</label>
+                                    <input type="text" class="form-control" id="inputAddress"
+                                        placeholder="1234 Main St">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputCity" class="form-label">City</label>
+                                    <input type="text" class="form-control" id="inputCity">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputState" class="form-label">State</label>
+                                    <input type="text" class="form-control" id="inputCity">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputZip" class="form-label">Pincode</label>
+                                    <input type="text" class="form-control" id="inputZip">
+                                </div> --}}
+                                <label class="form-label select-label"><strong>Saved Address</strong></label>
+                                <select class="form-control" id="addressForm" onchange="addressValue()">
+                                    {{#each userAddress}}
+                                    <option  value="{{this._id}}">{{this.name}},{{this.number}},{{this.house}},{{this.city}},{{this.state}},{{this.pincode}}</option>
+
+                                    {{/each}}
+
+                                </select>
+
+                                <input type="hidden" name="addressSelect">
+                            </form>
+                            <br>
+                        <a href="/add-address">    <button class="btn  btn-sm mb-2 btn-primary " <i
+                                class="ci-close-circle me-2"></i><span class="fs-sm">Add New Address</span> </button></a>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                        <div class="your-order-payment">
+                            <div class="your-order">
+                                <h2 class="order-title mb-4">Your Order</h2>
+
+                                <div class="table-responsive-sm order-table table-bordered">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Product Name</th>
+                                                <th scope="col">Qty</th>
+                                                <th scope="col">Price</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each productDetails}}
+                                            <tr>
+                                                <td><img src="/productImages/{{this.Image}}" style="width: 3em;" alt=""></td>
+                                                <td scope="row">{{this.Name}}</td>
+                                                <td>{{this.quantity}}</td>
+                                                <td>{{this.Price}}</td>
+                                                <input type="hidden" name="productid" value="{{this._id}}">
+                                                <input type="hidden" name="productname" value="{{this.Name}}">
+                                                <input type="hidden" name="price" value="{{this.Price}}">
+                                                <input type="hidden" name="quantity" value="{{this.quantity}}">
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td>Total</td>
+                                                <td></td>
+                                                <td>{{subtotal}}</td>
+                                            </tr>
+
+                                        </tfoot>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <br>
+                            <hr>
+
+                            <div class="your-payment">
+                                <h2 class="payment-title mb-3">Payment Method</h2>
+                                <br>
+                                <div class="payment-method">
+                                    <div class="form-check" onclick="displayRadioValue()">
+                                        <input class="form-check-input" type="radio" name="payment" id="COD" value="1" >
+                                        <label class="form-check-label" for="payment1">
+                                            Cash On Delivery
+                                        </label>
+<div>
+                                            <input class="form-check-input" type="radio" name="payment" id="rzp-button1"
+                                            value="2">
+                                        <label class="form-check-label" for="payment2">
+                                            RazorPay
+                                        </label>
+                                        
+</div>
+                                    </div>
+
+
+                                    <hr>
+
+
+                                    <div class="order-button-payment">
+                                        <button class="btn btn-success" onclick="placeOrder()" value="Place order" id="placeOrderButton"
+                                            type="submit" disabled>Place order</button>
+                                    </div>
+                                    <input type="hidden" name="radioValue">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--End Body Content-->
+    </div>
+    </div>
+</body>
+<script>
+
+    function addressValue() {
+        var selObj = document.getElementById("addressForm");
+        var selValue = selObj.options[selObj.selectedIndex].value;
+        document.getElementsByName('addressSelect').value = selValue
+       
+    }
+
+    function displayRadioValue() {
+        var ele = document.getElementsByName('payment');
+
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked)
+               { document.getElementsByName("radioValue").value = String(ele[i].value);
+                document.getElementById("placeOrderButton").disabled=false;
+                }
+
+        }
+    }
+
+
+    async function placeOrder() {
+        const productid = Object.values(document.getElementsByName('productid')).map((item) => item.value)
+        const productname = Object.values(document.getElementsByName('productname')).map((item) => item.value)
+        const price = Object.values(document.getElementsByName('price')).map((item) => item.value)
+        const quantity = Object.values(document.getElementsByName('quantity')).map((item) => item.value)
+        const addressId = document.getElementById('addressForm').value
+
+
+
+
+        const payment = document.getElementsByName("radioValue").value
+        let data = {
+            productid: productid,
+            productname: productname,
+            price: price,
+            quantity: quantity,
+            addressId: addressId,
+            payment: payment
+        }
+        try {
+            const orderplacement = await fetch('/placeOrder', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            let res = await orderplacement.json()
+            if (res == "success") {
+                Swal.fire({
+                    title: 'Success',
+                    text: "Item ordered successfully !",
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK',
+                    timer: 3000
+                }).then((res) => {
+                    window.location.href = '/home'
+                })
+            } else Swal.fire({
+                title: 'Something went wrong',
+                text: "something went wrong !",
+
+                icon: 'failure',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'OK',
+                timer: 3000
+            }).then((res) => {
+                window.location.href = '/home'
+            })
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+    async function addNewAddress() {
+        $('#addAddressModal').modal('show')
+    }
+
+    async function insertAddress() {
+        const name = document.getElementById('modalName').value
+        const mobile = document.getElementById('modalMobile').value
+        const address = document.getElementById('modalAddress').value
+        const city = document.getElementById('modalCity').value
+        const state = document.getElementById('modalState').value
+        const pincode = document.getElementById('modalPin').value
+
+        let addAddress = await fetch('/addAddress', {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: 'post',
+            body: JSON.stringify({ name: name, mobile: mobile, add: address, city: city, state: state, pin: pincode, cart: true }),
+        })
+        
+        let response = await addAddress.json()
+        if (response == 'success') {
+            $('#addAddressModal').modal('hide')
+            Swal.fire({
+                title: 'Success',
+                text: "Address Added Successfully !",
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'OK',
+                timer: 3000
+            }).then((res) => {
+                window.location.reload()
+            })
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            })
+        }
+    }
+
+</script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    document.getElementById('rzp-button1').onclick = async function(e){
+    e.preventDefault();
+
+    let order = await fetch('/payment',{
+        method: "POST",
+        headers:{
+            "content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            amount:169
+        })
+    
+    })
+        let orderData= await order.json()
+   console.log(orderData)
+    const options = {
+    "key": "rzp_test_HoTBsfjjQ8ECAO", // Enter the Key ID generated from the Dashboard
+    "amount": "16900", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    {{!-- "order_id": orderData.id,  --}}
+    "handler": function (response){
+        alert(response.razorpay_payment_id);
+        {{!-- alert(response.razorpay_order_id);
+        alert(response.razorpay_signature) --}}
+    },
+};
+const rzp1 = new Razorpay(options);
+
+
+    rzp1.open();
+    
+}
+
+
+</script>

@@ -1,0 +1,32 @@
+ <div class="container-fluid">
+        <div class="sub-container thehome">
+            <div class="p-3">
+                <h1 class="thenewarrival">Coupon Management</h1>
+
+    <div class="row" id="but"><a href="/admin/addcoupons" class="btn btn-success  ">Add Coupon</a></div>
+
+                <div class="theArea">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Code</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Off percentage</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each coupon}}
+                            <tr>
+                                <td>{{this.code}}</td>
+                                <td>{{this.date}}</td>
+                                <td>{{this.percentage}}</td>
+                                <td><strong>{{status}}</strong></td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>

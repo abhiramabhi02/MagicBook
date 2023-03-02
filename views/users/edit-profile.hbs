@@ -1,0 +1,26 @@
+<body>
+    <div class="container-fluid login-cont">
+        <div class="sub-container">
+            <div class="inner">
+                <form action="" method="post">
+                    <h2 class="text-center text-warning">Magic Book</h2>
+                    <span class="text-danger">{{message}}</span>
+                    <br>
+                    <h4 class="text-center">Edit Profile</h4>
+                    <br>
+                    <input class="form-control" type="text" name="firstname" placeholder="enter name" value="{{user.Firstname}}"
+                         required>
+                    <br>
+                    <input class="form-control" type="text" name="lastname" placeholder="enter name" value="{{user.Lastname}}"
+                         required>
+                    <br>
+                    <input class="form-control" type="text" name="email" readonly placeholder="enter email" value="{{user.Email}}"
+                         required>
+                    <br>
+                    
+                    <input type="submit" value="Save Profile" class=" btn btn-success form-control  mt-2" >
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

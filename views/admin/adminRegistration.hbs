@@ -1,0 +1,52 @@
+<section>
+    
+ <div class="signup-form">
+ <form action="" method="post">
+  <div class="mb-3 row">
+    <h5 id="Create-acc">New Admin</h5>
+    <label for="staticEmail" class="col-sm-2 col-form-label">First Name</label>
+    <div class="col-sm-10">
+      <input type="text"  class="form-control" name="firstname" required>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label for="staticEmail" class="col-sm-2 col-form-label">Last Name</label>
+    <div class="col-sm-10">
+      <input type="text"  class="form-control" name="lastname" required>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="Email"  class="form-control" name="email" required>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <label  class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password"  class="form-control" name="password" required>
+    </div>
+  </div>
+
+   <div class="mb-3 row">
+    <label  class="col-sm-2 col-form-label">Confirm Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" name="cpassword" required>
+    </div>
+  </div>
+
+  <div>
+  <input type="hidden" name="id" value="{{bannerData._id}}">
+</div>
+  
+  <div class="row sign-btn2">
+    <button type="submit" class="signup-btn btn-success">Signup</button>
+  </div>
+  </form>
+  </div>
+
+  <p style="color: red; text-align: center;">{{message}}</p>
+</section>
