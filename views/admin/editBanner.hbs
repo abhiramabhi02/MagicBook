@@ -1,24 +1,19 @@
 <div class="container-fluid login-cont">
   <div class="sub-container">
     <div class="inner">
+      
       <form action="" method="post" enctype="multipart/form-data">
         <h2 class="text-center">Edit Banner</h2>
         <br />
-        <input class="form-control2" type="file" name="badge" />
+        <input class="form-control2" type="file" name="badge">
         <br />
-        <input
-          class="form-control2"
-          type="text"
-          name="Name"
-          placeholder="Enter Banner Name"
-          required
-        />
+        <input class="form-control2" type="text" value="{{banner.Name}}" name="Name" placeholder="Enter Banner Name" required />
         <br />
         <div>
-          <input type="hidden" name="id" value="{{products._id}}" />
+          <input type="hidden" name="id" value="{{banner._id}}">
         </div>
         <br>
-        <input type="submit" value="Add Banner" class="btn btn-success mt-2" />
+        <input type="submit" value="update" class="btn btn-success mt-2">
         <br />
         <span class="text-danger">{{message}}</span>
         <br /><br />

@@ -40,9 +40,9 @@ const insertBanner = async (req, res) => {
 
 const editBanner = async (req, res) => {
     try {
-        const id = req.query.id
+        const id = req.body.id
         const bannerData = await banner.find({_id: id})
-        res.render('editBanner')
+        res.render('editBanner',{banner:bannerData})
 
 
     } catch (error) {
@@ -52,7 +52,8 @@ const editBanner = async (req, res) => {
 
 const updateBanner = async (req,res)=>{
     try {
-        const id = req.query.id
+        const id = req.body.id
+        console.log(id, "id logged");
         if(req.file){
             console.log(1);
             const bannerData = await banner.findOneAndUpdate({_id: id},{
