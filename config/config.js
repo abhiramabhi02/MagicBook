@@ -1,8 +1,8 @@
-require('dotenv').config()
-const sessionSecret = process.env.sessionSecretcode
+// require('dotenv').config()
+const sessionSecret = "MagicBookSession"
 
-const email = process.env.user
-const password = process.env.pass
+const email = "magicbookweb@gmail.com"
+const password = "bdiftmitgvgipeis"
 
 module.exports={
     sessionSecret,
