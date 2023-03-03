@@ -202,6 +202,7 @@ const verifyMail = async (req, res) => {
 
 const verifyLogin = async (req, res) => {
   try {
+    
     const email = req.body.email;
     const password = req.body.password;
 
@@ -785,7 +786,7 @@ const CategoryProduct = async (req, res) => {
     const categoryData = await category.find();
     let categoryproduct = await product.find({ Category: req.query.id });
     if (categoryproduct) {
-      console.log(req.query.name, "123--yy-- 00");
+      console.log(req.query.id, "123--yy-- 00");
       res.render("categorywise", {
         pro: categoryproduct,
         category: categoryData,

@@ -22,48 +22,51 @@
             ">
           <div class="card-body p-5 shadow-5 text-center">
             <h2 class="fw-bold mb-5">Sign up now</h2>
-            <form action="" method="post">
+            <form>
               <!-- 2 column grid layout with text inputs for the first and last names -->
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    {{!-- <label class="form-label" for="form3Example1">First name</label> --}}
                     <input type="text"  class="form-control" pattern="^[A-Za-z]+(([,.] |[ '-])[A-Za-z]+)*([.,'-]?)$" id="name" name="firstname" placeholder="First Name"
 									onfocus="this.placeholder = ''" title="Enter valid name" onblur="this.placeholder = 'Firstname'" required />
-                    
+                    <label class="form-label" for="form3Example1">First name</label>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    {{!-- <label class="form-label" for="form3Example2">Last name</label> --}}
                     <input type="text" pattern="^[A-Za-z]+(([,.] |[ '-])[A-Za-z]+)*([.,'-]?)$" id="name" name="lastname" placeholder="Last Name"
 									onfocus="this.placeholder = ''" title="Enter valid name" onblur="this.placeholder = 'Lastnam'" required class="form-control" />
-                    
+                    <label class="form-label" for="form3Example2">Last name</label>
                   </div>
                 </div>
               </div>
 
               <!-- Email input -->
               <div class="form-outline mb-4">
-                 {{!-- <label class="form-label" for="form3Example3">Email address</label> --}}
                 <input type="email" pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" id="email" name="email" placeholder="Email"
 									onfocus="this.placeholder = ''" title="Enter a valid Email" onblur="this.placeholder = 'Password'" required class="form-control" />
-               
+                <label class="form-label" for="form3Example3">Email address</label>
               </div>
 
               <!-- Password input -->
               <div class="form-outline mb-4">
-                 {{!-- <label class="form-label" for="form3Example4">Password</label> --}}
-                <input type="password" name="password" placeholder="Enter Password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$" 
-								 title="Password must include Uppercase, lowercase, number and character"	 required class="form-control" />
-               
+                <input type="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$" onfocus="this.placeholder = ''"
+								 title="Password must include Uppercase, lowercase, number and character"	onblur="this.placeholder = 'Password'" required class="form-control" />
+                <label class="form-label" for="form3Example4">Password</label>
               </div>
 
                <div class="form-outline mb-4">
-                 {{!-- <label class="form-label" for="form3Example5">Password</label> --}}
-                <input type="password" id="form3Example5" name="cpassword" placeholder="Confirm Password" 	pattern="^.{6,}$" 
-								 title="Password must include Uppercase, lowercase, number and character"	 required class="form-control" />
-               
+                <input type="password" id="form3Example5" name="cpassword" 	pattern="^.{6,}$" onfocus="this.placeholder = ''"
+								 title="Password must include Uppercase, lowercase, number and character"	onblur="this.placeholder = 'Password'" required class="form-control" />
+                <label class="form-label" for="form3Example5">Password</label>
+              </div>
+
+              <!-- Checkbox -->
+              <div class="form-check d-flex justify-content-center mb-4">
+                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+                <label class="form-check-label" for="form2Example33">
+                  Subscribe to our newsletter
+                </label>
               </div>
 
               <!-- Submit button -->

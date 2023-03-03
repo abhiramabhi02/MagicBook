@@ -6,21 +6,21 @@ body{
     width: 4em;
     height: 2.5em;
 }
-.form-control1{
+/* .form-control1{
     width: 70%;
     
-  }
-  .col-form-label1{
+  } */
+  /* .col-form-label1{
     margin-left: 0.25em;
-  }
-  .col-form-label{
+  } */
+  /* .col-form-label{
     margin-top: 0.5em;
-  }
-  .form-control{
+  } */
+  /* .form-control{
     width: 40%;
     margin-top: 1em;
     margin-left: 25em;
-  }
+  } */
   .form-control2{
     width: 70%;
     margin-top: 1em;
@@ -71,7 +71,7 @@ body{
   }
   .navbar-collapse{
    display: flex;
-   margin-left: 10em;
+   margin-left: 45em;
    
   }
   .searchbar{
