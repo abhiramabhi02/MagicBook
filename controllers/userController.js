@@ -124,7 +124,7 @@ const loadLanding = async (req, res) => {
 //function for rendering login Page
 const loadLogin = async (req, res) => {
   try {
-    res.render("login");
+    res.render("login", {log:true});
   } catch (error) {
     console.log(error.message);
   }
