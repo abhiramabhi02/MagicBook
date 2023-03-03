@@ -21,7 +21,7 @@ body{
     margin-top: 1em;
     margin-left: 25em;
   } */
-  .form-control2{
+  /* .form-control2{
     width: 70%;
     margin-top: 1em;
   }
@@ -32,7 +32,7 @@ body{
     border: 1.3px solid black;
     margin-left: 3em;
   }
-  
+   */
   .signup-form{
     display: flex;
     justify-content: center;
@@ -69,18 +69,7 @@ body{
     width: 15em;
     margin-left: 6em;
   }
-  .navbar-collapse{
-   display: flex;
-   margin-left: 45em;
-   
-  }
-  .searchbar{
-    margin-left: 16em;
-  }
-  .searchbtn{
-    height: 2.5em;
-    margin-top: 1em;
-  }
+
   .products{
     display: flex;
     justify-content: center;
@@ -92,22 +81,6 @@ body{
   .card{
     margin-left: 2em;
   }
- #but{
-  width: 10vw;
-  float: right;
- }
- .tooltip {
-  position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
-}
-.mgadmin{
-  margin-right: 5em;
-}
-.adminnav{
-  display: flex;
-  margin-left: 20em;
-}
 .usericon{
   font-size: 3em;
   color: rgb(71, 81, 61);
@@ -115,6 +88,8 @@ body{
 /* .bgadlog{
   background-image: url(https://miro.medium.com/v2/resize:fit:1100/format:webp/1*dP81IJq-tGFxy1rIK3RYsg.png);
 } */
-
+.collapse{
+  margin-left: 44em;
+}
 
 

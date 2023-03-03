@@ -1,7 +1,7 @@
-<header>
+{{!-- <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
   <div class="container-fluid">
-     <a class="navbar-brand text-warning" href="#"><img id="logo" src="/images/Magicbooklogo.png" alt=""> Magic Book</a>
+     <a class="navbar-brand text-warning" href="/admin/products"><img id="logo" src="/images/Magicbooklogo.png" alt=""> Magic Book</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -35,12 +35,7 @@
           </ul>
           </li>
 
-        {{!-- <li class="nav-item">
-          <a class="nav-link text-white" href="/admin/category">Category</a>
-        </li> --}}
-          {{!-- <li class="nav-item">
-          <a class="nav-link text-white" href="/admin/coupons">Coupons</a>
-        </li> --}}
+    
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Admin
@@ -56,4 +51,54 @@
     </div>
   </div>
 </nav>
-</header>
+</header> --}}
+
+{{!-- temp --}}
+
+
+
+
+
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-dark navbar-light sticky-top px-4 px-lg-5">
+    <a href="/" class="navbar-brand d-flex align-items-center">
+       <a class="navbar-brand text-warning" href="/admin/products"><img id="logo" src="/images/Magicbooklogo.png" alt=""> Magic Book</a>
+    </a>
+    <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+             <a class="nav-link active text-white" aria-current="page" href="/admin/admin">Dashboard</a>
+             <a class="nav-link text-white" href="/admin/products">Products</a>
+            <a class="nav-link text-white" href="/admin/users">Users</a>
+              <a class="nav-link text-white" href="/admin/orders">Orders</a>
+
+                <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Others
+          </a>
+         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/admin/category">Category</a></li>
+            <hr>
+              <li><a class="dropdown-item" href="/admin/coupons">Coupons</a></li>
+              <hr>
+               <li><a class="dropdown-item" href="/admin/banner">Banners</a></li>
+          </ul>
+          </li>
+
+             <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Admin
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/admin/reports">Reports</a></li>
+            <hr>
+              <li><a class="dropdown-item" href="/admin/adminlogout">Logout</a></li>
+          </ul>
+        </li>
+           
+        </div>
+    </div>
+</nav>
+<!-- Navbar End -->
