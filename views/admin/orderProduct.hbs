@@ -1,4 +1,4 @@
-
+{{!-- 
     <div class="container-fluid">
         <div class="sub-container thehome">
             <div class="p-3">
@@ -33,4 +33,58 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
+
+
+    {{!-- temp --}}
+
+
+
+    <body>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3 class="card-title">Product Details</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                     <th scope="col">Name</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Address</th>
+
+                                    </tr>
+                                </thead>
+                                {{#each order}}
+                                {{#each product}}
+                                <tbody>
+                                    <tr>
+                                         <td>{{name}}</td>
+                                <td>{{quantity}}</td>
+                                <td>₹{{price}}</td>   
+                                         
+                           
+                            {{/each}}
+                                <td>{{this.addressId}}</td>
+                                 </tr>
+                            {{/each}}
+                                    <!-- more rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+</body>

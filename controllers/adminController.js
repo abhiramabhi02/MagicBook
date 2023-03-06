@@ -137,6 +137,21 @@ const loadProducts = async (req, res) => {
   }
 };
 
+const viewfullproducts = async(req,res)=>{
+  try {
+
+    const productData = await product.findOne({_id:req.query.id})
+    console.log(productData,"pro");
+
+    res.render("productFull", {
+      admin: true,
+      products: productData
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 //insert new product page
 const addProduct = async (req, res) => {
   try {
@@ -153,7 +168,7 @@ const insertproduct = async (req, res) => {
     const Product = new product({
       Image: req.file.filename,
       Name: req.body.name,
-      Description: req.body.description,
+      Description: req.body.description, 
       Category: req.body.category,
       Price: req.body.price,
       Stock: req.body.stock,
@@ -595,4 +610,5 @@ module.exports = {
   insertCoupon,
   chartData,
   adminReports,
+  viewfullproducts
 };

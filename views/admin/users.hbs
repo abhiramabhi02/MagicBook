@@ -1,4 +1,4 @@
-
+{{!-- 
 <table class="table table-hover" id="mytable">
   <thead>
     <tr>
@@ -13,6 +13,7 @@
   {{#each users}}
   <tbody>
     <tr>
+      
       <td>{{this.Firstname}}</td>
       <td>{{this.Lastname}}</td>
       <td>{{this.Email}}</td>
@@ -33,4 +34,69 @@
 $(document).ready( function () {
 $('#mytable').DataTable();
 });
-</script>
+</script> --}}
+
+
+
+{{!-- temp --}}
+
+
+<body>
+  <div class="container-fluid">
+    <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+      
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-6">
+                <h3 class="card-title">Users Management</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">Email</th>
+      <th scope="col">Status</th>
+      <th scope="col">Actions</th>
+                </tr>
+              </thead>
+               {{#each users}}
+              <tbody>
+                <tr>
+                  <td>{{@index}}</td>
+                  <td>{{this.Firstname}}</td>
+      <td>{{this.Lastname}}</td>
+      <td>{{this.Email}}</td>
+      {{#ifeq this.is_verified 0}}
+      <td class="text-danger">Not Verified</td>
+      {{/ifeq}}
+
+      {{#ifeq this.is_verified 1}}
+      <td class="text-success"> Verified</td>
+      {{/ifeq}}
+      <td>
+        {{#if this.Block}}
+        <a href="/admin/unblockuser?id={{this._id}}" class="btn btn-success" onclick="return confirm('Are you sure?')">Unblock</a>
+        {{else}}
+          <a href="/admin/blockuser?id={{this._id}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Block</a>
+          {{/if}}
+      </td>
+                </tr>
+                 {{/each}}
+                <!-- more rows -->
+              </tbody>
+            </table>
+            </div>
+          </div>
+          </body>

@@ -1,14 +1,14 @@
-<section class="h-100 gradient-custom">
+{{!-- <section class="h-100 gradient-custom">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-lg-10 col-xl-8">
         <div>
-            <h5 class="text-muted mb-0" style="text-align: center;">Your Orders{{!--, <span style="color: #a8729a;">Anna</span>!--}}</h5>
+            <h5 class="text-muted mb-0" style="text-align: center;">Your Orders</h5>
         </div>
         {{#each order}}
         <div class="card" style="border-radius: 10px;">
           <div class="card-header px-4 py-5">
-            <h5 class="text-muted mb-0">Thanks for your Order{{!--, <span style="color: #a8729a;">Anna</span>!--}}</h5>
+            <h5 class="text-muted mb-0">Thanks for your Order</h5>
           </div>
           <div class="card-body p-4">
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -19,10 +19,7 @@
               {{#each product}}
               <div class="card-body">
                 <div class="row">
-                  {{!--<div class="col-md-2">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/13.webp"
-                      class="img-fluid" alt="Phone">
-                  </div>--}}
+                
                   <div class="col-md-4 text-center d-flex justify-content-center align-items-center">
                     <p class="text-muted mb-0">Product name : {{name}}</p>
                   </div>
@@ -82,6 +79,130 @@
             </div>
         </div>
         {{/each}}
+      </div>
+    </div>
+  </div>
+</section> --}}
+
+
+{{!-- temp --}}
+
+
+
+<section class="h-100 h-custom" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card border-top border-bottom border-3" style="border-color: #f37a27 !important;">
+          {{#each order}}
+          <div class="card-body p-5">
+
+            <p class="lead fw-bold mb-5" style="color: #f37a27;">Purchase Reciept</p>
+
+            <div class="row">
+              <div class="col mb-3">
+                <p class="small text-muted mb-1">Date</p>
+                <p>{{date}}</p>
+              </div>
+              <div class="col mb-3">
+                <p class="small text-muted mb-1">Order No.</p>
+                <p>{{orderId}}</p>
+              </div>
+            </div>
+
+            {{#each product}}
+            <div class="mx-n5 px-5 py-4" style="background-color: #f2f2f2;">
+              <div class="row">
+                <div class="col-md-8 col-lg-9">
+                  <p>{{name}}</p>
+                </div>
+                <div class="col-md-4 col-lg-3">
+                  <p>₹{{price}}</p>
+                </div>
+              </div>
+            </div>
+                {{/each}}
+            <div class="row my-4">
+              <div class="col-md-4 offset-md-8 col-lg-3 offset-lg-9">
+                <p class="lead fw-bold mb-0" style="color: #f37a27;">₹{{total}}</p>
+              </div>
+            </div>
+
+            <p class="lead fw-bold mb-4 pb-2" style="color: #f37a27;">Tracking Order</p>
+
+            <div class="row">
+              <div class="col-lg-12">
+
+                <div class="horizontal-timeline">
+
+                  {{#ifeq status "Processing"}}
+
+                  <ul class="list-inline items d-flex justify-content-between">
+                    <li class="list-inline-item items-list">
+                      <p class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">Ordered</p
+                        class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">
+                    </li>
+                    <li class="list-inline-item items-list">
+                      <p class="py-1 px-2 rounded text-white" >Shipped</p
+                        class="py-1 px-2 rounded text-white" >
+                    </li>
+                    <li class="list-inline-item items-list">
+                      <p class="py-1 px-2 rounded text-white">On the way
+                      </p>
+                    </li>
+                    <li class="list-inline-item items-list text-end" style="margin-right: 8px;">
+                      <p style="margin-right: -8px;">Delivered</p>
+                    </li>
+                  </ul>
+                  {{/ifeq}}
+
+                   {{#ifeq status "Shipped"}}
+
+                  <ul class="list-inline items d-flex justify-content-between">
+                    <li class="list-inline-item items-list">
+                      <p class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">Ordered</p
+                        class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">
+                    </li>
+                    <li class="list-inline-item items-list">
+                      <p class="py-1 px-2 rounded text-white" style="background-color: #f37a27;" >Shipped</p
+                        class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">
+                    </li>
+                  
+                    <li class="list-inline-item items-list text-end" style="margin-right: 8px;">
+                      <p style="margin-right: -8px;">Delivered</p>
+                    </li>
+                  </ul>
+                  {{/ifeq}}
+
+                  {{#ifeq status "Delivered"}}
+
+                  <ul class="list-inline items d-flex justify-content-between">
+                    <li class="list-inline-item items-list">
+                      <p class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">Ordered</p
+                        class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">
+                    </li>
+                    <li class="list-inline-item items-list">
+                      <p class="py-1 px-2 rounded text-white" style="background-color: #f37a27;" >Shipped</p
+                        class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">
+                    </li>
+                   
+                    <li class="list-inline-item items-list">
+                      <p class="py-1 px-2 rounded text-white" style="background-color: #f37a27;" >Delivered</p
+                        class="py-1 px-2 rounded text-white" style="background-color: #f37a27;">
+                    </li>
+                  </ul>
+                  {{/ifeq}}
+                </div>
+
+              </div>
+            </div>
+
+            <hr>
+            <br>
+                    
+          </div>
+          {{/each}}
+        </div>
       </div>
     </div>
   </div>

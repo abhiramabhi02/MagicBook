@@ -1,39 +1,73 @@
-<header>
+{{!-- <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <div class="container-fluid">
-     <a class="navbar-brand text-warning" href="#"><img id="logo" src="/images/Magicbooklogo.png" alt=""> Magic Book</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    {{!-- <form class="d-flex searchbar">
-        <input class="form-control2 me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-success searchbtn" type="submit">Search</button>
-      </form> --}}
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="/home">Home</a>
-        </li>
-         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white dropdown1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Account
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/userprofile">Profile</a></li>
-            <hr>
+    <div class="container-fluid">
+      <a class="navbar-brand text-warning" href="#"><img id="logo" src="/images/Magicbooklogo.png" alt=""> Magic
+        Book</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="/home">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white dropdown1" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Account
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/userprofile">Profile</a></li>
+              <hr>
               <li><a class="dropdown-item" href="/logoutuser">Logout</a></li>
-          </ul>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link text-white" href="#">about</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link text-white" href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
-        </li>
-         
-      
-      </ul>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">about</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+          </li>
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header> --}}
+
+
+{{!-- temp --}}
+
+
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-dark navbar-light sticky-top px-4 px-lg-5">
+  <a href="/" class="navbar-brand d-flex align-items-center">
+    <a class="navbar-brand text-warning" href="#"><img id="logo" src="/images/Magicbooklogo.png" alt=""> Magic
+        Book</a>
+  </a>
+  <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="navbar-nav ms-auto p-4 p-lg-0">
+      <a class="nav-link active text-white" aria-current="page" href="/home">Home</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white dropdown1" href="#" id="navbarDropdown" role="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Account
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="/userprofile">Profile</a></li>
+          <hr>
+          <li><a class="dropdown-item" href="/logoutuser">Logout</a></li>
+        </ul>
+      </li>
+      <a class="nav-link text-white" href="#">about</a>
+      <a class="nav-link text-white" href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+
     </div>
   </div>
 </nav>
-</header>
+<!-- Navbar End -->

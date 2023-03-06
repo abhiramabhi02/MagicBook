@@ -1,32 +1,80 @@
- <div class="container-fluid">
-        <div class="sub-container thehome">
-            <div class="p-3">
-                <h1 class="thenewarrival">Coupon Management</h1>
+{{!-- <div class="container-fluid">
+    <div class="sub-container thehome">
+        <div class="p-3">
+            <h1 class="thenewarrival">Coupon Management</h1>
 
-    <div class="row" id="but"><a href="/admin/addcoupons" class="btn btn-success  ">Add Coupon</a></div>
+            <div class="row" id="but"><a href="/admin/addcoupons" class="btn btn-success  ">Add Coupon</a></div>
 
-                <div class="theArea">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Code</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Off percentage</th>
-                                <th scope="col">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each coupon}}
-                            <tr>
-                                <td>{{this.code}}</td>
-                                <td>{{this.date}}</td>
-                                <td>{{this.percentage}}</td>
-                                <td><strong>{{status}}</strong></td>
-                            </tr>
-                            {{/each}}
-                        </tbody>
-                    </table>
-                </div>
+            <div class="theArea">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Code</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Off percentage</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each coupon}}
+                        <tr>
+                            <td>{{this.code}}</td>
+                            <td>{{this.date}}</td>
+                            <td>{{this.percentage}}</td>
+                            <td><strong>{{status}}</strong></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+</div> --}}
+
+
+
+{{!-- temp --}}
+
+<body>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3 class="card-title">Coupon Management</h3>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <a href="/admin/addcoupons" class="btn btn-success  ">Add Coupon</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th scope="col">Code</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Off percentage</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                {{#each coupon}}
+                                <tbody>
+                                    <tr>
+                                        <td> {{@index}}</td>
+                                        <td>{{this.code}}</td>
+                                        <td>{{this.date}}</td>
+                                        <td>{{this.percentage}}</td>
+                                        <td><strong>{{status}}</strong></td>
+                                    </tr>
+                                    {{/each}}
+                                    <!-- more rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+</body>

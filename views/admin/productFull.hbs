@@ -1,47 +1,94 @@
+{{!-- 
+ <div class="row" id="but"><a href="/admin/addproduct" class="btn btn-success  ">Add Product</a></div>
+
+<table class="table table-hover" id="mytable">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col">Stock</th>
+      <th scope="col">Description</th>
+   
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><img src="/productImages/{{this.Image}}" width="100px" height="100px"></td>
+      <td>{{this.Name}}</td>
+      <td>{{this.Price}}</td>
+      <td>{{this.Stock}}</td>
+      <td style="font-size: 12px;">{{this.Description}}</td>
+   
+     
+    </tr>
+  </tbody>
+
+</table>
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" data-bs-backdrop="static"
+                data-bs-keyboard="false" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <h5> <strong>Are you sure to Logout ?</strong></h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <a class="btn btn-danger" href="/admin/logout" role="button">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<script>
+$(document).ready( function () {
+$('#mytable').DataTable();
+});
+</script>  --}}
+
+
+
+{{!-- 
+temp --}}
+
 
 <body>
   <div class="container-fluid">
     <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <h1 class="text-center">Product Listing</h1>
-      </div>
     </div>
     <div class="row">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
             <div class="row">
-              <div class="col-md-6">
-                <h3 class="card-title">Product List</h3>
-              </div>
-              <div class="col-md-6 text-right">
-                <a href="/admin/addproduct" class="btn btn-primary"><i class="fas fa-plus"></i> Add Product</a>
-              </div>
+            
             </div>
           </div>
           <div class="card-body">
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>No.</th>
-                  <th>Name</th>
-                  <th>Category</th>
-                  <th>Actions</th>
+                  <th>Image</th>
+                  <th>Name</th>               
+                <th>Price</th>
+                <th>Stock</th>
+                  <th>Description</th>
                 </tr>
               </thead>
-               {{#each products}}
+              
               <tbody>
                 <tr>
-                  <td> {{@index}}</td>
-                  <td>{{this.Name}}</td>
-                  <td>{{this.Category}}</td>
-                  <td>
-                    <a href="#" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</a>
-                    <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
-                  </td>
+                 
+                  <td><img src="/productImages/{{products.Image}}" width="100px" height="100px"></td>
+                  <td>{{products.Name}}</td>
+                   <td>{{products.Price}}</td>
+                  <td>{{products.Stock}}</td>
+                  <td>{{products.Description}}</td>
                 </tr>
-                 {{/each}}
+            
                 <!-- more rows -->
               </tbody>
             </table>

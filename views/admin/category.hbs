@@ -1,34 +1,91 @@
- <div class="container-fluid">
-        <div class="sub-container thehome">
+{{!-- <div class="container-fluid">
+    <div class="sub-container thehome">
+        <div class="p-3">
+            <h1 class="thenewarrival">Category Management</h1>
             <div class="p-3">
-                <h1 class="thenewarrival">Category Management</h1>
-                <div class="p-3">
-                    <form class="d-flex">
-                        <a href="/admin/addcategory" class="btn btn-success">Add category</a>
-                    </form>
-                </div>
-                <div class="theArea">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Action</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each Category}}
-                            <tr>
-                                <td>{{this.Name}}</td>
-                                <td>
-                                    <a href="/admin/editcategory?id={{this._id}}" class="btn btn-primary">Edit</a>
-                                    <a href="/admin/deletecategory?id={{this._id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
-                                </td>
-                            </tr>
-                            {{/each}}
-                        </tbody>
-                    </table>
-                </div>
+                <form class="d-flex">
+                    <a href="/admin/addcategory" class="btn btn-success">Add category</a>
+                </form>
+            </div>
+            <div class="theArea">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each Category}}
+                        <tr>
+                            <td>{{this.Name}}</td>
+                            <td>
+                                <a href="/admin/editcategory?id={{this._id}}" class="btn btn-primary">Edit</a>
+                                <a href="/admin/deletecategory?id={{this._id}}" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+</div> --}}
+
+
+
+{{!-- temp --}}
+
+
+<body>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3 class="card-title">Category Management</h3>
+                                </div>
+                                  <div class="col-md-6 text-right">
+                                  <a href="/admin/addcategory" class="btn btn-success">Add category</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Action</th>
+
+                                    </tr>
+                                </thead>
+                                {{#each Category}}
+                                <tbody>
+                                    <tr>
+                                        <td>{{@index}}</td>
+                                        <td>{{this.Name}}</td>
+                                        <td>
+                                            <a href="/admin/editcategory?id={{this._id}}"
+                                                class="btn btn-primary">Edit</a>
+                                            <a href="/admin/deletecategory?id={{this._id}}" class="btn btn-danger"
+                                                onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                    <!-- more rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+</body>

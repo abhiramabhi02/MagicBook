@@ -99,8 +99,9 @@ $('#mytable').DataTable();
                   <td>{{this.Name}}</td>
                   <td>{{category.[0].Name}}</td>
                   <td>
-                    <a href="#" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</a>
-                    <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                    <a href="/admin/editproduct?id={{this._id}}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</a>
+                    <a href="/admin/deleteproduct?id={{this._id}}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                     <a href="/admin/viewfullproducts?id={{this._id}}" class="btn btn-dark">Details</a>
                   </td>
                 </tr>
                  {{/each}}

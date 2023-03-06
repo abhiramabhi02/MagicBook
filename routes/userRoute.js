@@ -7,24 +7,6 @@ const session = require('express-session')
 const configs = require('../config/config')
 
 
-//setting up of session
-user_route.use(session({
-    secret:configs.sessionSecret,
-    resave:false,
-    saveUninitialized:false,
-    cookie:{
-        maxAge:360000,
-        sameSite:false,
-    }
-}))
-
-//setting up of cache
-user_route.use(function(req, res, next) {
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-    next();
-  });
  
 
  

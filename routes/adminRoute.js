@@ -10,24 +10,7 @@ const path = require('path')
 const bannerController = require('../controllers/bannerController')
 
 
-//setting up of session
-admin_route.use(session({
-    secret:configs.sessionSecret,
-    resave:false,
-    saveUninitialized:false,
-    cookie:{
-        maxAge:36000,
-        sameSite:false,
-    }
-}))
 
-//setting up of cache
-admin_route.use(function(req, res, next) {
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-    next();
-  });
  
  
 
@@ -51,6 +34,8 @@ admin_route.post('/adminlogin',adminController.verifyAdmin)
 
 //load product management
 admin_route.get('/products',auth.isLoginadmin,adminController.loadProducts)
+
+admin_route.get('/viewfullproducts',auth.isLoginadmin,adminController.viewfullproducts)
 
 //load user Management
 admin_route.get('/users',auth.isLoginadmin,adminController.loadUsers)
@@ -118,9 +103,9 @@ admin_route.get('/addcoupons',auth.isLoginadmin,adminController.addCoupon)
 
 admin_route.post('/addcoupons',adminController.insertCoupon)
 
-admin_route.get('/reports',adminController.adminReports)
+admin_route.get('/reports',auth.isLoginadmin,adminController.adminReports)
 
-admin_route.get('/chartData',adminController.chartData)
+admin_route.get('/chartData',auth.isLoginadmin,adminController.chartData)
 
 admin_route.get('/banner',auth.isLoginadmin,bannerController.loadBanner)
 

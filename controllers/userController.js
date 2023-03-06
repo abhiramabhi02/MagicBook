@@ -124,7 +124,7 @@ const loadLanding = async (req, res) => {
 //function for rendering login Page
 const loadLogin = async (req, res) => {
   try {
-    res.render("login", {log:true});
+    res.render("login", {noh:true});
   } catch (error) {
     console.log(error.message);
   }
@@ -350,11 +350,13 @@ const loadProfile = async (req, res) => {
 
 //load user orders in user profile
 const loadOrders = async (req, res) => {
+  
   const order = await Order.find({ userId: req.session.user_id }).sort({
     date: -1,
   });
-
+ 
   res.render("userOrder", { order: order });
+  
 };
 
 const loadAddress = async (req, res) => {

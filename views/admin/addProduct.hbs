@@ -59,31 +59,45 @@
 
 {{!-- temp --}}
 
- <div class="container">
-    <h1 class="text-center">Add Product</h1>
-    <div class="card">
-      <div class="card-body">
-        <form>
-          <div class="mb-3">
-            <label for="product-name" class="form-label">Product Name</label>
-            <input type="text" class="form-control" id="product-name" placeholder="Enter product name">
-          </div>
-          <div class="mb-3">
-            <label for="product-description" class="form-label">Product Description</label>
-            <textarea class="form-control" id="product-description" rows="3" placeholder="Enter product description"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="product-price" class="form-label">Price</label>
-            <div class="input-group">
-              <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-              <input type="number" class="form-control" id="product-price" placeholder="Enter price">
-            </div>
-          </div>
-          <div class="mb-3 text-end">
-            <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add Product</button>
-          </div>
-        </form>
-      </div>
+<div class="container">
+		<h1>Add Product</h1>
+		<form action="" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+				<label for="image">Image</label>
+				<input type="file" class="form-control" id="name" name="image" >
+			</div>
+			<div class="form-group">
+				<label for="name">Product Name:</label>
+				<input type="text" class="form-control" id="name" name="name"  required>
+			</div>
+      <div class="form-group">
+			    <select class="form-select" aria-label="Category" type="text" name="category" placeholder="enter category" required>
+                        {{#each Category}}
+                        <option value="{{_id}}">{{this.Name}}</option>
+                        {{/each}}
+                    </select>
+			</div>
+			<div class="form-group">
+				<label for="description">Product Description:</label>
+				<input class="form-control" id="description" name="description" >
+			</div>
+			<div class="form-group">
+				<label for="price">Price:</label>
+				<input type="number" class="form-control" id="price" name="price"  step="0.01" required>
+			</div>
+			<div class="form-group">
+				<label for="quantity">Stock:</label>
+				<input type="number" class="form-control" id="stock" name="stock"  required>
+			</div>
+         <div>
+        <input type="hidden" name="id" value="{{products._id}}">
     </div>
-  </div>
+			<button type="submit" class="btn btn-primary">Add Product</button>
+		</form>
+	</div>
+
+
+
+
+
 
