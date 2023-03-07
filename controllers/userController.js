@@ -87,7 +87,7 @@ const resetPasswordMail = async (name, email, token) => {
       html:
         "<p>Hii " +
         name +
-        ' please click here to <a href="http://magicbookstores.online/forgetpassword?token=' +
+        ' please click here to <a href="http://localhost:3000/forgetpassword?token=' +
         token +
         '"> Reset </a> your password.</p>',
     };
@@ -109,7 +109,7 @@ const loadRegister = async (req, res) => {
     res.render("registration");
   } catch (error) {
     console.log(error.message);
-  }
+  } 
 };
 //function for rendering Landing page
 const loadLanding = async (req, res) => {
