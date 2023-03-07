@@ -85,7 +85,7 @@ const resetPasswordMail = async (name, email, token) => {
       to: email,
       subject: "For Reset password",
       html:
-        "<p>Hii " +
+        "<p>Hiii " +
         name +
         ' please click here to <a href="http://magicbookstores.online/forgetpassword?token=' +
         token +
