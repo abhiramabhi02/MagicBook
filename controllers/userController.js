@@ -109,7 +109,7 @@ const loadRegister = async (req, res) => {
     res.render("registration");
   } catch (error) {
     console.log(error.message);
-  } 
+  }
 };
 //function for rendering Landing page
 const loadLanding = async (req, res) => {
@@ -284,7 +284,7 @@ const forgetVerify = async (req, res) => {
         );
         resetPasswordMail(userData.Name, userData.Email, randomString);
         res.render("forget", {
-          noh: true,
+          log: true,
           message:
             "reset password link has been sent to your registered mail id ",
         });
