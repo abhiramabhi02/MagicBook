@@ -32,6 +32,7 @@ user_route.get('/verify',userController.verifyMail)
 //User Login
 user_route.post('/login',userController.verifyLogin)
 
+
 user_route.get('/forget',auth.isLogout ,userController.forgetLoad);
 
 user_route.post('/forget',userController.forgetVerify);

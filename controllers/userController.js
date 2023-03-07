@@ -87,7 +87,7 @@ const resetPasswordMail = async (name, email, token) => {
       html:
         "<p>Hii " +
         name +
-        ' please click here to <a href="http://localhost:3000/forgetpassword?token=' +
+        ' please click here to <a href="http://magicbookstores.online/forgetpassword?token=' +
         token +
         '"> Reset </a> your password.</p>',
     };
@@ -284,7 +284,7 @@ const forgetVerify = async (req, res) => {
         );
         resetPasswordMail(userData.Name, userData.Email, randomString);
         res.render("forget", {
-          log: true,
+          noh: true,
           message:
             "reset password link has been sent to your registered mail id ",
         });
