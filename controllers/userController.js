@@ -87,7 +87,7 @@ const resetPasswordMail = async (name, email, token) => {
       html:
         "<p>Hii " +
         name +
-        ' please click here to <a href="http://localhost:3000/forgetpassword?token=' +
+        ' please click here to <a href="http://magicbookstores.online/forgetpassword?token=' +
         token +
         '"> Reset </a> your password.</p>',
     };
