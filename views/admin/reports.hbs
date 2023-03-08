@@ -1,4 +1,4 @@
-<table class="table table-hover" id="mytable">
+{{!-- <table class="table table-hover" id="mytable">
   <thead>
     <tr>
       <th scope="col">Product</th>
@@ -12,12 +12,147 @@
   <tbody>
     <tr>
       <td>{{this.Name}}</td>
-      <td>{{category.[0].Name}}</td> 
+      <td>{{category.[0].Name}}</td>
       <td>{{this.Price}}</td>
       <td>{{this.count}}</td>
       <td>{{this.sum}}</td>
-   
+
     </tr>
   </tbody>
   {{/each}}
-</table>
+
+  <tfoot>
+    <tr>
+      <td colspan="5">
+        <nav aria-label="Page navigation">
+          <ul class="pagination justify-content-center">
+            {{#paginate productData2 total=10}}
+            {{#if isDots}}
+            <li class="page-item disabled"><a class="page-link" href="#">{{label}}</a></li>
+            {{else}}
+            <li class="page-item {{#if isActive}}active{{/if}}"><a class="page-link" href="?page={{page}}">{{label}}</a>
+            </li>
+            {{/if}}
+            {{/paginate}}
+          </ul>
+        </nav>
+      </td>
+    </tr>
+  </tfoot>
+</table> --}}
+
+
+
+{{!-- temp --}}
+
+
+<body>
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-md-6">
+                  <h3 class="card-title">Sales Report</h3>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="startDate">Start Date:</label>
+                      <input type="date" class="form-control" id="startDate" name="startDate">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="endDate">End Date:</label>
+                      <input type="date" class="form-control" id="endDate" name="endDate">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>&nbsp;</label>
+                      <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Sales</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each productData2}}
+                  <tr>
+                    <td>{{@index}}</td>
+                    <td>{{this.Name}}</td>
+                    <td>{{category.[0].Name}}</td>
+                    <td>{{this.Price}}</td>
+                    <td>{{this.count}}</td>
+                    <td>{{this.sum}}</td>
+                  </tr>
+                  {{/each}}
+                  <!-- more rows -->
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="5">
+                      <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                          {{#paginate productData2 total=10}}
+                          {{#if isDots}}
+                          <li class="page-item disabled"><a class="page-link" href="#">{{label}}</a></li>
+                          {{else}}
+                          <li class="page-item {{#if isActive}}active{{/if}}"><a class="page-link"
+                              href="?page={{page}}">{{label}}</a></li>
+                          {{/if}}
+                          {{/paginate}}
+                        </ul>
+                      </nav>
+                    </td>
+                  </tr>
+                </tfoot>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+{{!-- temp --}}
+
+
+<script>
+  // Get the current page from the URL
+  var urlParams = new URLSearchParams(window.location.search);
+  var currentPage = parseInt(urlParams.get('page')) || 1;
+
+  // Set the active class on the current page
+  $('.pagination li').removeClass('active');
+  $('.pagination li').eq(currentPage).addClass('active');
+
+  // Hide and show the appropriate rows based on the current page
+  var itemsPerPage = 10;
+  var startIndex = (currentPage - 1) * itemsPerPage;
+  var endIndex = startIndex + itemsPerPage;
+  $('tbody tr').hide();
+  $('tbody tr').slice(startIndex, endIndex).show();
+</script>

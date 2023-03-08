@@ -40,6 +40,51 @@ Handlebars.registerHelper('ifnoteq', function (a, b, options) {
     return options.inverse(this);
 });
 
+
+Handlebars.registerHelper('paginate', function(array, options) {
+    var perPage = options.hash.total || 10;
+    var currentPage = options.data.page || 1;
+    var totalPages = Math.ceil(array.length / perPage);
+  
+    var startPage, endPage;
+    if (totalPages <= 5) {
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      if (currentPage <= 3) {
+        startPage = 1;
+        endPage = 5;
+      } else if (currentPage + 1 >= totalPages) {
+        startPage = totalPages - 4;
+        endPage = totalPages;
+      } else {
+        startPage = currentPage - 2;
+        endPage = currentPage + 2;
+      }
+    }
+  
+    var output = '';
+    var context;
+    for (var i = startPage; i <= endPage; i++) {
+      context = {
+        isActive: i == currentPage,
+        label: i,
+        page: i
+      };
+      output += options.fn(context);
+    }
+  
+    if (endPage < totalPages) {
+      output += options.fn({
+        isDots: true,
+        label: '...',
+        page: null
+      });
+    }
+  
+    return output;
+  });
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 
