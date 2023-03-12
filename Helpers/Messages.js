@@ -1,29 +1,29 @@
-Registrationsuccess ="Registration Succesful, Verify your email and login"
+Registrationsuccess = "Registration Succesful, Verify your email and login";
 
-RegistrationFailed ="Registration Failed"
+RegistrationFailed = "Registration Failed";
 
-passAndCpass ="Password and Confirm Password must be same"
+passAndCpass = "Password and Confirm Password must be same";
 
-existingMail ="Email already exists"
+existingMail = "Email already exists";
 
-VerifyMail ="Please Verify Your Email"
+VerifyMail = "Please Verify Your Email";
 
-incorrectCredentials ="Incorrect email or password"
+incorrectCredentials = "Incorrect email or password";
 
-incorrectOrBlocked = "Incorrect Credentials or You might be blocked"
+incorrectOrBlocked = "Incorrect Credentials or You might be blocked";
 
-existingCategory = "category already exist"
+existingCategory = "category already exist";
 
-BannerFailed = "Inserting Banner Failed"
+BannerFailed = "Inserting Banner Failed";
 
-module.exports={
-    Registrationsuccess,
-    RegistrationFailed,
-    passAndCpass,
-    existingMail,
-    VerifyMail,
-    incorrectCredentials,
-    incorrectOrBlocked,
-    existingCategory,
-    BannerFailed
-}
+module.exports = {
+  Registrationsuccess,
+  RegistrationFailed,
+  passAndCpass,
+  existingMail,
+  VerifyMail,
+  incorrectCredentials,
+  incorrectOrBlocked,
+  existingCategory,
+  BannerFailed,
+};

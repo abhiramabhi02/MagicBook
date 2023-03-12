@@ -13,6 +13,7 @@ const moment = require("moment");
 const Coupon = require("../models/couponModel");
 const category = require("../models/categoryModel");
 const config = require("../config/config");
+const otpGenerator = require("otp-generator");
 
 const Razorpay = require("razorpay");
 const couponModel = require("../models/couponModel");
@@ -50,7 +51,7 @@ const sendVerifyMail = async (firstname, email, user_id) => {
       html:
         "<p>Hello " +
         firstname +
-        ' Please click here to <a href="http://127.0.0.1:3000/verify?id=' +
+        ' Please click here to <a href="http://magicbookstores.online/verify?id=' +
         user_id +
         '">verify</a> your email.</p>',
     };
@@ -103,10 +104,45 @@ const resetPasswordMail = async (name, email, token) => {
   }
 };
 
+const otpMail = async (firstname, email, otp) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      requireTLS: true,
+      auth: {
+        user: "magicbookweb@gmail.com",
+        pass: "bdiftmitgvgipeis",
+      },
+    });
+    const mailOption = {
+      from: "magicbookweb@gmail.com",
+      to: email,
+      subject: "OTP for Login",
+      html: "<p>Your otp for login " + firstname + "  " + otp + "</p>",
+    };
+    transporter.sendMail(mailOption, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email has been sent -", info.response);
+      }
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 //function for rendering registration page
 const loadRegister = async (req, res) => {
   try {
-    res.render("registration");
+    const errorMessage = await req.session.errorMessage;
+
+    const message = await req.session.Message;
+    res.render("registration",{noh: true, errorMessage, message});
+    delete req.session.errorMessage;
+    delete req.session.Message;
   } catch (error) {
     console.log(error.message);
   }
@@ -124,7 +160,13 @@ const loadLanding = async (req, res) => {
 //function for rendering login Page
 const loadLogin = async (req, res) => {
   try {
-    res.render("login", {noh:true});
+    const errorMessage = await req.session.errorMessage;
+
+    const message = await req.session.Message;
+
+    res.render("login", { noh: true, errorMessage, message });
+    delete req.session.errorMessage;
+    delete req.session.Message;
   } catch (error) {
     console.log(error.message);
   }
@@ -153,25 +195,22 @@ const insertUser = async (req, res) => {
         if (userData) {
           sendVerifyMail(req.body.firstname, req.body.email, userData._id);
 
-          res.render("login", {
-            message: messages.Registrationsuccess,
-          });
+          req.session.Message = messages.Registrationsuccess,
+          res.redirect("/login");
         } else {
-          res.render("registration", { message: messages.RegistrationFailed });
+          req.session.errorMessage = messages.RegistrationFailed
+          res.redirect("/register");
         }
       } else {
-        res.render("registration", {
-          message: messages.passAndCpass,
-        });
+        req.session.errorMessage = messages.passAndCpass
+        res.redirect("/register");
       }
     } else {
-      res.render("registration", { message: messages.existingMail });
+      req.session.errorMessage = messages.existingMail
+      res.redirect("/register");
     }
   } catch (error) {
     console.log(error.message);
-    res.render("/register", {
-      message: messages.passAndCpass,
-    });
   }
 };
 
@@ -202,7 +241,6 @@ const verifyMail = async (req, res) => {
 
 const verifyLogin = async (req, res) => {
   try {
-    
     const email = req.body.email;
     const password = req.body.password;
 
@@ -212,16 +250,19 @@ const verifyLogin = async (req, res) => {
       const passwordMatch = await bcrypt.compare(password, userData.Password);
       if (passwordMatch) {
         if (userData.is_verified === 0) {
-          res.render("login", { error: messages.VerifyMail });
+          req.session.Message = messages.VerifyMail;
+          res.redirect("/login");
         } else {
           req.session.user_id = userData._id;
-          res.redirect("home");
+          res.redirect("/home");
         }
       } else {
-        res.render("login", { error: messages.incorrectCredentials });
+        req.session.errorMessage = messages.incorrectCredentials;
+        res.redirect("/login");
       }
     } else {
-      res.render("login", { error: messages.incorrectOrBlocked });
+      req.session.errorMessage = messages.incorrectOrBlocked;
+      res.redirect("/login");
     }
   } catch (error) {
     console.log(error.message);
@@ -285,6 +326,7 @@ const forgetVerify = async (req, res) => {
         resetPasswordMail(userData.Name, userData.Email, randomString);
         res.render("forget", {
           log: true,
+          correct: true,
           message:
             "reset password link has been sent to your registered mail id ",
         });
@@ -350,13 +392,11 @@ const loadProfile = async (req, res) => {
 
 //load user orders in user profile
 const loadOrders = async (req, res) => {
-  
   const order = await Order.find({ userId: req.session.user_id }).sort({
     date: -1,
   });
- 
+
   res.render("userOrder", { order: order });
-  
 };
 
 const loadAddress = async (req, res) => {
@@ -609,6 +649,7 @@ const orderStatus = async (req, res) => {
         },
       }
     );
+    res.redirect("/userorders");
   } else if (orderData.status === "Processing") {
     const CancelOrder = await Order.findOneAndUpdate(
       { _id: req.query.id },
@@ -618,8 +659,8 @@ const orderStatus = async (req, res) => {
         },
       }
     );
+    res.redirect("/userorders");
   }
-  res.redirect("/userorders");
 };
 
 let globalCoupon;
@@ -804,7 +845,9 @@ const invoice = async (req, res) => {
     const id = req.query.id;
     const invoiceData = await Order.find({ _id: id });
 
-    res.render("invoice", { invoiceData });
+    const date2 = moment(invoiceData.date).format("DD-MM-YYYY");
+
+    res.render("invoice", { invoiceData, date2 });
   } catch (error) {
     console.log(error.message);
   }
@@ -825,6 +868,98 @@ const addAddresscheck = async (req, res) => {
       { $addToSet: { Address: req.body } }
     );
     res.redirect(307, "/checkout");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const loadOtpLogin = async (req, res) => {
+  try {
+    res.render("otplogin", { noh: true });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const otpLogin = async (req, res) => {
+  try {
+    const otp = otpGenerator.generate(6, {
+      upperCaseAlphabets: false,
+      specialChars: false,
+      lowerCaseAlphabets: false,
+    });
+
+    const email = req.body.email;
+
+    const userData = await User.findOneAndUpdate(
+      { Email: email },
+      {
+        $set: {
+          token: otp,
+        },
+      }
+    );
+
+    if (userData) {
+      otpMail(userData.Firstname, userData.Email, otp);
+
+      res.render("otplogin2");
+    } else {
+      res.render("otplogin", { message: "valla pannikum poda" });
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const loginWithOtp = async (req, res) => {
+  try {
+    console.log("logged at login with otp");
+
+    const email = req.body.email;
+    const otp = req.body.otp;
+    const userData = await User.findOne({ Email: email });
+
+    console.log(userData, " logged at 918");
+
+    if (userData && userData.Block == false) {
+      console.log("logged at 921");
+      if (userData.token == otp) {
+        if (userData.is_verified === 0) {
+          res.render("otplogin2", { error: messages.VerifyMail });
+        } else {
+          console.log("in at 926");
+          req.session.user_id = userData._id;
+          res.redirect("home");
+
+          const updateToken = await User.updateOne(
+            { Email: email },
+            {
+              $set: {
+                token: "",
+              },
+            }
+          );
+        }
+      }
+    } else {
+      res.render("otplogin2", { error: messages.incorrectOrBlocked });
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const orderMainLoad = async (req, res) => {
+  try {
+    const id = req.query.id;
+    const order = await Order.findOne({ _id: id });
+
+    console.log(order);
+
+    const date2 = moment(order.date).format("DD-MM-YYYY");
+
+    res.render("userOrdersMain", { order, date2 });
   } catch (error) {
     console.log(error.message);
   }
@@ -871,4 +1006,8 @@ module.exports = {
   invoice,
   checkoutAddress,
   addAddresscheck,
+  loadOtpLogin,
+  otpLogin,
+  loginWithOtp,
+  orderMainLoad,
 };

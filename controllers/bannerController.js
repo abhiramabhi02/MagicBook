@@ -39,53 +39,54 @@ const insertBanner = async (req, res) => {
 };
 
 const editBanner = async (req, res) => {
-    try {
-        const id = req.body.id
-        const bannerData = await banner.find({_id: id})
-        res.render('editBanner',{banner:bannerData})
-
-
-    } catch (error) {
-        console.log(error.message);
-    }
+  try {
+    const id = req.body.id;
+    const bannerData = await banner.find({ _id: id });
+    res.render("editBanner", { banner: bannerData });
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
-const updateBanner = async (req,res)=>{
-    try {
-        const id = req.body.id
-        console.log(id, "id logged");
-        if(req.file){
-            console.log(1);
-            const bannerData = await banner.findOneAndUpdate({_id: id},{
-                $Set:{
-                    Badge: req.file.filename,
-                    Name: req.body.Name
-                }
-            })
-            console.log(bannerData);
-            res.redirect('/admin/banner')
-        }else{
-            console.log(2);
-            const bannerData = await banner.findOneAndUpdate({_id: id},{
-                $set:{
-                    Name: req.body.Name
-                }
-            })
-            console.log(bannerData);
-            res.redirect('/admin/banner')
+const updateBanner = async (req, res) => {
+  try {
+    const id = req.body.id;
+    console.log(id, "id logged");
+    if (req.file) {
+      console.log(1);
+      const bannerData = await banner.findOneAndUpdate(
+        { _id: id },
+        {
+          $Set: {
+            Badge: req.file.filename,
+            Name: req.body.Name,
+          },
         }
-       
-
-       
-    } catch (error) {
-        console.log(error.message);
+      );
+      console.log(bannerData);
+      res.redirect("/admin/banner");
+    } else {
+      console.log(2);
+      const bannerData = await banner.findOneAndUpdate(
+        { _id: id },
+        {
+          $set: {
+            Name: req.body.Name,
+          },
+        }
+      );
+      console.log(bannerData);
+      res.redirect("/admin/banner");
     }
-}
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 module.exports = {
   loadBanner,
   addBanner,
   insertBanner,
   editBanner,
-  updateBanner
+  updateBanner,
 };

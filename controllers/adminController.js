@@ -137,26 +137,25 @@ const loadProducts = async (req, res) => {
   }
 };
 
-const viewfullproducts = async(req,res)=>{
+const viewfullproducts = async (req, res) => {
   try {
-
-    const productData = await product.findOne({_id:req.query.id})
-    console.log(productData,"pro");
+    const productData = await product.findOne({ _id: req.query.id });
+    console.log(productData, "pro");
 
     res.render("productFull", {
       admin: true,
-      products: productData
+      products: productData,
     });
   } catch (error) {
     console.log(error.message);
   }
-}
+};
 
 //insert new product page
 const addProduct = async (req, res) => {
   try {
     const categoryData = await Category.find();
-    res.render("addProduct", { Category: categoryData, admin:true });
+    res.render("addProduct", { Category: categoryData, admin: true });
   } catch (error) {
     console.log(error.message);
   }
@@ -168,7 +167,7 @@ const insertproduct = async (req, res) => {
     const Product = new product({
       Image: req.file.filename,
       Name: req.body.name,
-      Description: req.body.description, 
+      Description: req.body.description,
       Category: req.body.category,
       Price: req.body.price,
       Stock: req.body.stock,
@@ -319,7 +318,7 @@ const loadCategory = async (req, res) => {
 //add new category page
 const addCategory = async (req, res) => {
   try {
-    res.render("add-category",{admin:true});
+    res.render("add-category", { admin: true });
   } catch (error) {
     console.log(error.message);
   }
@@ -551,7 +550,6 @@ const adminReports = async (req, res) => {
 
     const productData = await product.aggregate([
       {
-        
         $project: {
           Name: 1,
           Category: 1,
@@ -572,7 +570,7 @@ const adminReports = async (req, res) => {
 
     console.log(productData, "4rtwat");
 
-    res.render("reports", { admin: true, productData,productData2 });
+    res.render("reports", { admin: true, productData, productData2 });
 
     //  res.render('reports',{admin:true, productData})
   } catch (error) {
@@ -610,5 +608,5 @@ module.exports = {
   insertCoupon,
   chartData,
   adminReports,
-  viewfullproducts
+  viewfullproducts,
 };

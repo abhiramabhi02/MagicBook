@@ -2,7 +2,7 @@ const isLogin = async (req, res, next) => {
   try {
     if (req.session.user_id) {
     } else {
-     return res.redirect("/login");
+      return res.redirect("/login");
     }
     next();
   } catch (error) {
@@ -13,7 +13,7 @@ const isLogin = async (req, res, next) => {
 const isLogout = async (req, res, next) => {
   try {
     if (req.session.user_id) {
-     return res.redirect("/home");
+      return res.redirect("/home");
     }
     next();
   } catch (error) {
@@ -25,7 +25,7 @@ const isLoginadmin = async (req, res, next) => {
   try {
     if (req.session.admin_id) {
     } else {
-    return res.redirect("/admin/adminlogin");
+      return res.redirect("/admin/adminlogin");
     }
     next();
   } catch (error) {
@@ -36,7 +36,7 @@ const isLoginadmin = async (req, res, next) => {
 const isLogoutadmin = async (req, res, next) => {
   try {
     if (req.session.admin_id) {
-     return res.redirect("/admin/admin");
+      return res.redirect("/admin/admin");
     }
     next();
   } catch (error) {

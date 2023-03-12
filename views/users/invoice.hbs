@@ -4,16 +4,6 @@
     <div class="container mb-5 mt-3">
       <div class="row d-flex align-items-baseline">
        
-        <div class="col-xl-3 float-end">
-          <div>
-            <button style="margin-left: 1em; margin-top: 1em;" class=" btn btn-secondary"
-              id="download">download</button>
-          </div>
-          <a class="btn btn-light text-capitalize" data-mdb-ripple-color="dark"><i
-              class="far fa-file-pdf text-danger"></i> Export</a>
-        </div>
-
-
         <hr>
         {{#each invoiceData}}
       </div>
@@ -35,8 +25,11 @@
                <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
                   class="fw-bold">ID:</span>{{this.orderId}}</li>
                    <li class="text-muted">To: <span style="color:#5d9fc5 ;">{{this.addressId}}</span></li>
+              {{/each}}
               <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
-                  class="fw-bold">Creation Date: </span>{{this.date}}</li>
+                  class="fw-bold">Creation Date: </span>{{date2}}</li>
+
+                  {{#each invoiceData}}
               <li class="text-muted"><i class="fas fa-circle" style="color:#84B0CA ;"></i> <span
                   class="me-1 fw-bold">Status:</span><span class="badge bg-warning text-black fw-bold">
                   {{this.status}}</span></li>
@@ -106,6 +99,12 @@
           </div>
         </div>
         <hr>
+          <div class="col-xl-3 float-end">
+          <div>
+            <button style="margin-left: 1em; margin-top: 1em;" class=" btn btn-secondary"
+              id="download">Download Invoice</button>
+          </div>
+        </div>
         <div class="row">
           <div class="col-xl-10">
             <p>Thank you for your purchase</p>
