@@ -160,6 +160,7 @@ const loadLanding = async (req, res) => {
 //function for rendering login Page
 const loadLogin = async (req, res) => {
   try {
+    
     const errorMessage = await req.session.errorMessage;
 
     const message = await req.session.Message;
