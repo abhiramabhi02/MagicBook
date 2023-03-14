@@ -133,4 +133,6 @@ user_route.post("/loginwithotp", auth.isLogout, userController.loginWithOtp);
 
 user_route.get("/orderMain", auth.isLogin, userController.orderMainLoad);
 
+user_route.post('/addAddresscheckout',auth.isLogin,userController.addAddresscheck)
+
 module.exports = user_route;

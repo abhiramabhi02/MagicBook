@@ -602,6 +602,82 @@ const filterSales = async(req,res)=>{
   }
 }
 
+// j filter
+let filter= false;
+
+const reports = async (req, res) => {
+  try {
+
+      const orderdata = await Order.aggregate([
+          { $match: { status: "Delivered" } },
+          {
+              $group: {
+                  _id: null,
+                  totalSales: { $sum: "$total" }
+
+              },
+
+          },
+          {
+              $sort: { _id: 1 }
+          }
+      ]);
+      const totalSales = orderdata.length > 0 ? orderdata[0].totalSales : 0;
+
+
+      if (!filter) {
+          orderdataFilter = await Order.find({ status: "Delivered" })
+      }
+     
+      console.log(orderdataFilter);
+
+      //  orderdataFilter.forEach(order => {
+      //      order.deliveryDateFormatted = moment(order.delivery_date).format('DD-MM-YYYY');
+      //  });
+
+      res.render('reports', { admin: 1, orderdata: orderdataFilter, totalSales: totalSales });
+
+  } catch (error) {
+      console.log(error.message);
+  }
+}
+
+
+const filteringOrder = async (req, res) => {
+  try {
+      const reqDate = req.body.startDate
+      const toDate = req.body.endDate 
+
+
+      orderdataFilter = await Order.find(
+
+          {
+              $and: [
+                  {
+                      date: {
+                          $gt: reqDate,
+                      }
+                  },
+                  {
+                      date: {
+                          $lt: toDate,
+                      }
+                  }]
+          });
+
+
+      
+      console.log(reqDate, toDate, "tdate");
+      
+      filter = true;
+      res.redirect('/admin/reports');
+  } catch (error) {
+      console.log(error.message);
+  }
+}
+
+// j filter
+
 module.exports = {
   adminLogin,
   adminRegistration,
@@ -633,5 +709,7 @@ module.exports = {
   chartData,
   adminReports,
   viewfullproducts,
-  filterSales
+  filterSales,
+  reports,
+  filteringOrder
 };

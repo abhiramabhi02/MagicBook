@@ -63,27 +63,27 @@
                   <h3 class="card-title">Sales Report</h3>
                 </div>
                 <form action="/admin/salesfilter" method="post">
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="startDate">Start Date:</label>
-                      <input type="date" class="form-control" id="startDate" name="startDate">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="startDate">Start Date:</label>
+                        <input type="date" class="form-control" id="startDate" name="startDate">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="endDate">End Date:</label>
+                        <input type="date" class="form-control" id="endDate" name="endDate">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label>&nbsp;</label>
+                        <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                      </div>
+
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label for="endDate">End Date:</label>
-                      <input type="date" class="form-control" id="endDate" name="endDate">
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="form-group">
-                      <label>&nbsp;</label>
-                      <button type="submit" class="btn btn-primary btn-block">Filter</button>
-                    </div>
-                    
-                  </div>
-                </div>
                 </form>
               </div>
             </div>
@@ -92,22 +92,18 @@
                 <thead>
                   <tr>
                     <th>No.</th>
-                    <th scope="col">Product</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Qty</th>
-                    <th scope="col">Sales</th>
+                    <th>Order Id</th>
+                    <th>Delivered Date</th>
+                    <th>Order Price</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {{#each productData2}}
+                  {{#each orderdata}}
                   <tr>
                     <td>{{@index}}</td>
-                    <td>{{this.Name}}</td>
-                    <td>{{category.[0].Name}}</td>
-                    <td>{{this.Price}}</td>
-                    <td>{{this.count}}</td>
-                    <td>{{this.sum}}</td>
+                    <td>{{this.orderId}}</td>
+                    <td>{{this.date}}</td>
+                    <td>₹{{this.total}}</td>
                   </tr>
                   {{/each}}
                   <!-- more rows -->
@@ -117,7 +113,7 @@
                     <td colspan="5">
                       <nav aria-label="Page navigation">
                         <ul class="pagination justify-content-center">
-                          {{#paginate productData2 total=10}}
+                          {{#paginate orderdata total=10}}
                           {{#if isDots}}
                           <li class="page-item disabled"><a class="page-link" href="#">{{label}}</a></li>
                           {{else}}

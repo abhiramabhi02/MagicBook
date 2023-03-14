@@ -864,11 +864,22 @@ const checkoutAddress = async (req, res) => {
 
 const addAddresscheck = async (req, res) => {
   try {
+    const data = { Name, mobile, house, city ,state ,pin} = req.body
+    console.log(data, "data json");
     const address = await User.findByIdAndUpdate(
       { _id: ObjectId(req.session.user_id) },
-      { $addToSet: { Address: req.body } }
+      { $addToSet: { 
+        Address:{
+          name: req.body.Name,
+          number: req.body.mobile,
+          house: req.body.house,
+          city: req.body.city,
+          state: req.body.state,
+          pin: req.body.pin,
+        }
+       } }
     );
-    res.redirect(307, "/checkout");
+    res.json("success")
   } catch (error) {
     console.log(error.message);
   }

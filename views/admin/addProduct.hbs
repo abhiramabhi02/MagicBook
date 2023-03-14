@@ -61,7 +61,7 @@
 
 <div class="container">
 		<h1>Add Product</h1>
-		<form action="" method="POST" enctype="multipart/form-data">
+		<form action="" method="POST" enctype="multipart/form-data" onsubmit="validateForm()">
       <div class="form-group">
 				<label for="image">Image</label>
 				<input type="file" class="form-control" id="name" name="image" >
@@ -97,6 +97,29 @@
 		</form>
 	</div>
 
+
+<script>
+function validateForm() {
+  var imageInput = document.getElementById("image");
+  var imageError = document.getElementById("image-error");
+  if (imageInput.value) {
+    var allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+    var maxFileSize = 5 * 1024 * 1024; // 5 MB
+    if (allowedTypes.indexOf(imageInput.files[0].type) === -1) {
+      imageError.innerHTML = "Please select a valid image file (JPEG, PNG, GIF).";
+      return false;
+    } else if (imageInput.files[0].size > maxFileSize) {
+      imageError.innerHTML = "The selected image file exceeds the maximum size of 5 MB.";
+      return false;
+    } else {
+      return true;
+    }
+  } else {
+    imageError.innerHTML = "Please select an image file.";
+    return false;
+  }
+}
+</script>
 
 
 
