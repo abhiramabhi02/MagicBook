@@ -827,14 +827,14 @@ const validateCoupon = async (req, res) => {
 
 const CategoryProduct = async (req, res) => {
   try {
-    const categoryData = await category.find();
+   const categoryData = await category.find();
     let categoryproduct = await product.find({ Category: req.query.id });
     if (categoryproduct) {
-      console.log(req.query.id, "123--yy-- 00");
-      res.render("categorywise", {
-        pro: categoryproduct,
+      res.render("home", {
+        Product: categoryproduct,
         category: categoryData,
       });
+      //Product,category
     }
   } catch (error) {
     console.log(error.message);

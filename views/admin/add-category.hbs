@@ -1,10 +1,10 @@
-   <div class="container-fluid login-cont">
+   {{!-- <div class="container-fluid login-cont">
         <div class="sub-container">
             <div class="inner">
                 <form action="" method="post">
                     <h2 class="text-center">Add Category</h2>
                     <br>
-                    <input class="form-control2" type="text" name="name" placeholder="Enter Category Name" required>
+                   <input class="form-control2" type="text" name="name" placeholder="Enter Category Name" pattern="^[A-Za-z-]+$" title="Please enter only letters and hyphens (-)" required>
                     <br>               
                     <input type="submit" value="Add Category" class=" btn btn-success mt-2">
                     <br>
@@ -14,4 +14,19 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
+
+
+
+    {{!-- temp --}}
+
+<div class="container d-flex justify-content-center">
+<form>
+  <h2>Add Category</h2>
+  <div class="form-group">
+    <input type="text" class="form-control1" name="name" id="name" placeholder="Enter Category Name" pattern="^[A-Za-z-]+$" title="Please enter only letters and hyphens (-)" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Add Category</button>
+</form>
+</div>
+

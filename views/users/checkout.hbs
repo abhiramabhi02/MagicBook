@@ -1,4 +1,6 @@
 <br><br>
+<div class="container">
+<div class="container">
 <div class="pageWrapper">
     <!--Body Content-->
     <div id="page-content">
@@ -9,6 +11,7 @@
             </div>
         </div>
         <!--End Page Title-->
+        <div class="container">
         <div class="container">
             <div class="row billing-fields">
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
@@ -52,7 +55,7 @@
                         </div>
                         <div class="card mb-4">
                             <div class="card-header py-3">
-                                <h5 class="mb-0">Apply Promo Code</h5>
+                                <h6 class="mb-0">Apply Promo Code</h6>
                             </div>
                             <div class="card-body">
 
@@ -67,7 +70,7 @@
                                     </li>
                                     <br>
                                 </ul>
-                                <button class="btn btn-dark btn-lg btn-block " onclick="checkCoupon()">
+                                <button class="btn btn-dark btn-block " onclick="checkCoupon()">
                                     Apply Code
                                 </button>
                                 <span id="errorMessage"></span>
@@ -156,8 +159,9 @@
                         </div> --}}
 
                         <hr>
+                        <div class="container">
                         <div class="your-payment">
-                            <h2 class="payment-title mb-3">Payment Method</h2>
+                            <h4 class="payment-title mb-3">Payment Method</h4>
                             <br>
                             <div class="payment-method">
                                 <div class="form-check">
@@ -176,20 +180,23 @@
                                 </div>
                                 <hr>
                                 <div class="order-button-payment">
-                                    <button class="btn" onclick="CheckplaceOrder()" value="Place order"
+                                    <button class="btn btn-dark" onclick="CheckplaceOrder()" value="Place order"
                                         id="placeOrderButton" disabled>Place
                                         order</button>
                                 </div>
                                 <input type="hidden" name="radioValue">
                             </div>
                         </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
     </div>
 </div>
-
+</div>
+</div>
 </body>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 

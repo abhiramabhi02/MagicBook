@@ -114,14 +114,28 @@ app.use(function (req, res, next) {
   next();
 });
 
+
+//user blocked ?   >>th..eef
+const userModel = require("./models/userModel");
+app.use(async (req, res, next) => {
+  if (req?.session?.user_id) {
+    let data = await userModel.findOne({ _id: req.session.user_id });
+    if (data?.Block) {
+      delete req.session.user_id;
+    }
+  }
+  next();
+});
+
+
 //calling userRoute here
 app.use("/", userRoute);
 
 //calling adminRoute here
 app.use("/admin", adminRoute);
 
-app.use("*", notFound);
-app.use(errorHandler);
+// app.use("*", notFound);
+// app.use(errorHandler);
 
 app.listen(3000, (req, res) => {
   console.log("Server is running");

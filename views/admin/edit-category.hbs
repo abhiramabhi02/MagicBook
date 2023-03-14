@@ -7,9 +7,9 @@
                     <input class="form-control2" type="text" name="name" placeholder="enter category name" value="{{category.name}}" required>
                     <br>               
                     <input type="submit" value="Save" class="form-control1 btn btn-success mt-2">
-                    <input type="hidden" name="id" value="{{category._id}}">
+                    <input type="hidden" name="id" value="{{Category._id}}">
                     <br>
-                    <span class="text-danger">{{message}}</span>
+                    <span class="text-danger">{{errorMessage}}</span>
                     <br>
                     <a href="/admin/category" class="text-dark">Back</a>
                 </form>

@@ -150,4 +150,6 @@ admin_route.post(
   bannerController.updateBanner
 );
 
+admin_route.post('/salesfilter',auth.isLoginadmin,adminController.filterSales)
+
 module.exports = admin_route;

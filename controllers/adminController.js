@@ -309,7 +309,9 @@ const UnblockUser = async (req, res) => {
 const loadCategory = async (req, res) => {
   try {
     const categoryData = await Category.find();
-    res.render("category", { admin: true, Category: categoryData });
+    const errorMessage = await req.session.errorMessage;
+    res.render("category", { admin: true, Category: categoryData, errorMessage });
+    delete req.session.errorMessage
   } catch (error) {
     console.log(error.message);
   }
@@ -331,10 +333,8 @@ const insertCategory = async (req, res) => {
     console.log(checkSameName);
 
     if (checkSameName) {
-      res.render("add-category", {
-        admin: true,
-        message: messages.existingCategory,
-      });
+      req.session.errorMessage =  messages.existingCategory,
+      res.redirect("/admin/category");
     } else {
       const category = new Category({
         Name: req.body.name,
@@ -353,7 +353,9 @@ const editCategory = async (req, res) => {
   try {
     const id = req.query.id;
     const categoryData = await Category.findById({ _id: id });
-    res.render("edit-category", { Category: categoryData, admin: true });
+    const errorMessage = await req.session.errorMessage;
+    res.render("edit-category", { Category: categoryData, admin: true, errorMessage });
+    delete req.session.errorMessage
   } catch (error) {
     console.log(error.message);
   }
@@ -363,14 +365,24 @@ const editCategory = async (req, res) => {
 const updateCategory = async (req, res) => {
   try {
     const name = req.body.name;
-    const categoryData = await Category.findByIdAndUpdate(
-      { _id: req.body.id },
-      {
-        $set: {
-          Name: name,
-        },
-      }
-    );
+    const categoryName = await Category.findOne({Name: name})
+ 
+    if(categoryName){
+      req.session.errorMessage = messages.existingCategory
+      res.redirect('/admin/category')
+    }else{
+      const id = req.body.id
+      console.log(id," id");
+      const categoryData = await Category.findByIdAndUpdate(
+        { _id: id },
+        {
+          $set: {
+            Name: name,
+          },
+        }
+      );
+    }
+   
     res.redirect("/admin/category");
   } catch (error) {
     console.log(error.message);
@@ -578,6 +590,18 @@ const adminReports = async (req, res) => {
   }
 };
 
+
+const filterSales = async(req,res)=>{
+  try {
+    const start = req.body.startDate
+    const end = req.body.endDate
+
+    console.log(start, "gs ", end);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 module.exports = {
   adminLogin,
   adminRegistration,
@@ -609,4 +633,5 @@ module.exports = {
   chartData,
   adminReports,
   viewfullproducts,
+  filterSales
 };
