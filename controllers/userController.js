@@ -915,9 +915,9 @@ const otpLogin = async (req, res) => {
     if (userData) {
       otpMail(userData.Firstname, userData.Email, otp);
 
-      res.render("otplogin2");
+      res.render("otplogin2",{noh:true});
     } else {
-      res.render("otplogin", { message: "valla pannikum poda" });
+      res.render("otplogin", { message: "User not Found", noh:true });
     }
   } catch (error) {
     console.log(error.message);

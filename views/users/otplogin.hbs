@@ -4,3 +4,29 @@
     <input type="submit" value="Submit">
     {{message}}
 </form>
+
+
+
+///
+
+<div class="card text-center" style="width: 300px;">
+    <div class="card-header h5 text-white bg-primary">Password Reset</div>
+    <div class="card-body px-5">
+        <p class="card-text py-2">
+            Enter your email address and we'll send you an email with Otp.
+        </p>
+            <form action="" method="post">
+                   <div class="form-outline">
+            <label class="form-label" for="typeEmail">Email input</label>
+            <input type="email" id="email" name="email" class="form-control my-3" />
+            
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+        <div class="d-flex justify-content-between mt-4">
+            <a class="" href="/login">Login</a>
+            <a class="" href="/register">Register</a>
+        </div>
+       <p class="text-danger">{{message}}</p>
+    </div>
+</div>
