@@ -128,6 +128,8 @@ admin_route.get("/addcoupons", auth.isLoginadmin, adminController.addCoupon);
 
 admin_route.post("/addcoupons", adminController.insertCoupon);
 
+admin_route.get('/deletecoupon',auth.isLoginadmin,adminController.deleteCoupon)
+
 admin_route.get("/reports", auth.isLoginadmin, adminController.reports);
 
 admin_route.get("/chartData", auth.isLoginadmin, adminController.chartData);
@@ -151,5 +153,8 @@ admin_route.post(
 );
 
 admin_route.post('/salesfilter',auth.isLoginadmin,adminController.filteringOrder)
+
+
+admin_route.get('/deletebanner',auth.isLoginadmin,bannerController.deleteBanner)
 
 module.exports = admin_route;

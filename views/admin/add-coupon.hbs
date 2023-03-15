@@ -4,7 +4,7 @@
                 <form action="" method="post">
                     <h2 class="text-center">Add Category</h2>
                     <br>
-                    <input class="form-control2" type="text" name="code" placeholder="Enter Coupon Code" required>
+                    <input class="form-control2" type="text" name="code" placeholder="Enter Coupon Code" pattern="^[A-Z0-9-]+$" title="Please enter only uppercase letters and hyphens (-)" required>
                     <br>    
                     <input class="form-control2" type="date" name="date" placeholder="Enter expiry date of coupon" required>
                     <br>

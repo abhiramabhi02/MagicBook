@@ -19,6 +19,8 @@
                                     <br><br>
                                     <h2>Deliver to:</h2>
                                     <br>
+                                   
+                                   {{#if userAddress}}
                                     <div class="row">
                                         <select class="form-select form-select-lg mb-3" id="addressform"
                                             onchange="addressValue()">
@@ -57,6 +59,15 @@
                                                     Address</span> </button>
                                         </div>
                                     </div>
+                                    {{else}}
+                                    <h5>Address is not present</h5>
+                                     <div class="d-flex justify-content-left mb-2">
+                                            <button class="btn btn-dark  btn-sm mb-2  " onclick="addNewAddress()" <i
+                                                class="ci-close-circle me-2"></i><span class="fs-sm">Add New
+                                                    Address</span> </button>
+                                        </div>
+                                    {{/if}}
+                                    
                                     <div class="card mb-4">
                                         <div class="card-header py-3">
                                             <h6 class="mb-0">Apply Promo Code</h6>

@@ -493,6 +493,16 @@ const insertCoupon = async (req, res) => {
   }
 };
 
+const deleteCoupon = async(req,res)=>{
+  try {
+    const id = req.query.id
+    const delcoupon = await coupon.deleteOne({_id:id})
+    res.redirect('/admin/coupons')
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 const chartData = async (req, res) => {
   try {
     const salesData = await Order.aggregate([
@@ -706,6 +716,7 @@ module.exports = {
   loadCoupons,
   addCoupon,
   insertCoupon,
+  deleteCoupon,
   chartData,
   adminReports,
   viewfullproducts,

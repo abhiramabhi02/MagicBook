@@ -1,16 +1,16 @@
 <div class="container-fluid login-cont">
   <div class="sub-container">
     <div class="inner">
-      
+      {{#each bannerData}}
       <form action="" method="post" enctype="multipart/form-data">
         <h2 class="text-center">Edit Banner</h2>
         <br />
         <input class="form-control2" type="file" name="badge">
         <br />
-        <input class="form-control2" type="text" value="{{banner.Name}}" name="Name" placeholder="Enter Banner Name" required />
+        <input class="form-control2" type="text" value="{{Name}}" name="Name" placeholder="Enter Banner Name" required />
         <br />
         <div>
-          <input type="hidden" name="id" value="{{banner._id}}">
+          <input type="hidden" name="id" value="{{_id}}">
         </div>
         <br>
         <input type="submit" value="update" class="btn btn-success mt-2">
@@ -19,6 +19,7 @@
         <br /><br />
         <a href="/admin/banner" class="text-dark">Back</a>
       </form>
+      {{/each}}
     </div>
   </div>
 </div>

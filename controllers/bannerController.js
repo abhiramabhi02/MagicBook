@@ -40,9 +40,10 @@ const insertBanner = async (req, res) => {
 
 const editBanner = async (req, res) => {
   try {
-    const id = req.body.id;
+    const id = req.query.id;
     const bannerData = await banner.find({ _id: id });
-    res.render("editBanner", { banner: bannerData });
+    console.log(bannerData,'id query');
+    res.render("editBanner", {bannerData});
   } catch (error) {
     console.log(error.message);
   }
@@ -54,12 +55,12 @@ const updateBanner = async (req, res) => {
     console.log(id, "id logged");
     if (req.file) {
       console.log(1);
-      const bannerData = await banner.findOneAndUpdate(
+      const bannerData = await banner.findByIdAndUpdate(
         { _id: id },
         {
-          $Set: {
+          $set: {
             Badge: req.file.filename,
-            Name: req.body.Name,
+            Name: req.body.Name
           },
         }
       );
@@ -83,10 +84,21 @@ const updateBanner = async (req, res) => {
   }
 };
 
+const deleteBanner = async(req,res)=>{
+  try {
+    const id = req.query.id;
+    const bannerData = await banner.deleteOne({ _id: id });
+    res.redirect('/admin/banner')
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 module.exports = {
   loadBanner,
   addBanner,
   insertBanner,
   editBanner,
   updateBanner,
+  deleteBanner
 };

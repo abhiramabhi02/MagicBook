@@ -60,6 +60,8 @@
                                         <th scope="col">Date</th>
                                         <th scope="col">Off percentage</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Actions</th>
+                                        
                                     </tr>
                                 </thead>
                                 {{#each coupon}}
@@ -70,6 +72,7 @@
                                         <td>{{this.date}}</td>
                                         <td>{{this.percentage}}</td>
                                         <td><strong>{{status}}</strong></td>
+                                        <td><a class="btn btn-danger" href="/admin/deletecoupon?id={{this._id}}">Delete</a></td>
                                     </tr>
                                     {{/each}}
                                     <!-- more rows -->
