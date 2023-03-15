@@ -36,12 +36,11 @@ const sendVerifyMail = async (firstname, email, user_id) => {
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      requireTLS: true,
+      port: 465,
+      secure: true,
       auth: {
         user: "magicbookweb@gmail.com",
-        pass: "bdiftmitgvgipeis",
+        pass: "psparlmsgaavldvu",
       },
     });
     const mailOption = {
@@ -72,12 +71,11 @@ const resetPasswordMail = async (name, email, token) => {
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      requireTLS: true,
+      port: 465,
+      secure: true,
       auth: {
         user: "magicbookweb@gmail.com",
-        pass: "bdiftmitgvgipeis",
+        pass: "psparlmsgaavldvu",
       },
     });
 
@@ -108,12 +106,11 @@ const otpMail = async (firstname, email, otp) => {
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      requireTLS: true,
+      port: 465,
+      secure: true,
       auth: {
         user: "magicbookweb@gmail.com",
-        pass: "bdiftmitgvgipeis",
+        pass: "psparlmsgaavldvu",
       },
     });
     const mailOption = {
@@ -140,7 +137,7 @@ const loadRegister = async (req, res) => {
     const errorMessage = await req.session.errorMessage;
 
     const message = await req.session.Message;
-    res.render("registration",{noh: true, errorMessage, message});
+    res.render("registration", { noh: true, errorMessage, message });
     delete req.session.errorMessage;
     delete req.session.Message;
   } catch (error) {
@@ -160,7 +157,6 @@ const loadLanding = async (req, res) => {
 //function for rendering login Page
 const loadLogin = async (req, res) => {
   try {
-    
     const errorMessage = await req.session.errorMessage;
 
     const message = await req.session.Message;
@@ -196,18 +192,18 @@ const insertUser = async (req, res) => {
         if (userData) {
           sendVerifyMail(req.body.firstname, req.body.email, userData._id);
 
-          req.session.Message = messages.Registrationsuccess,
-          res.redirect("/login");
+          (req.session.Message = messages.Registrationsuccess),
+            res.redirect("/login");
         } else {
-          req.session.errorMessage = messages.RegistrationFailed
+          req.session.errorMessage = messages.RegistrationFailed;
           res.redirect("/register");
         }
       } else {
-        req.session.errorMessage = messages.passAndCpass
+        req.session.errorMessage = messages.passAndCpass;
         res.redirect("/register");
       }
     } else {
-      req.session.errorMessage = messages.existingMail
+      req.session.errorMessage = messages.existingMail;
       res.redirect("/register");
     }
   } catch (error) {
@@ -827,7 +823,7 @@ const validateCoupon = async (req, res) => {
 
 const CategoryProduct = async (req, res) => {
   try {
-   const categoryData = await category.find();
+    const categoryData = await category.find();
     let categoryproduct = await product.find({ Category: req.query.id });
     if (categoryproduct) {
       res.render("home", {
@@ -864,22 +860,24 @@ const checkoutAddress = async (req, res) => {
 
 const addAddresscheck = async (req, res) => {
   try {
-    const data = { Name, mobile, house, city ,state ,pin} = req.body
+    const data = ({ Name, mobile, house, city, state, pin } = req.body);
     console.log(data, "data json");
     const address = await User.findByIdAndUpdate(
       { _id: ObjectId(req.session.user_id) },
-      { $addToSet: { 
-        Address:{
-          name: req.body.Name,
-          number: req.body.mobile,
-          house: req.body.house,
-          city: req.body.city,
-          state: req.body.state,
-          pin: req.body.pin,
-        }
-       } }
+      {
+        $addToSet: {
+          Address: {
+            name: req.body.Name,
+            number: req.body.mobile,
+            house: req.body.house,
+            city: req.body.city,
+            state: req.body.state,
+            pin: req.body.pin,
+          },
+        },
+      }
     );
-    res.json("success")
+    res.json("success");
   } catch (error) {
     console.log(error.message);
   }
@@ -887,7 +885,9 @@ const addAddresscheck = async (req, res) => {
 
 const loadOtpLogin = async (req, res) => {
   try {
-    res.render("otplogin", { noh: true });
+    const errorMessage = req.session.errorMessage
+    res.render("otplogin", { noh: true, error:errorMessage });
+    delete req.session.error
   } catch (error) {
     console.log(error.message);
   }
@@ -915,9 +915,10 @@ const otpLogin = async (req, res) => {
     if (userData) {
       otpMail(userData.Firstname, userData.Email, otp);
 
-      res.render("otplogin2",{noh:true});
+      res.render("otplogin2", { noh: true });
     } else {
-      res.render("otplogin", { message: "User not Found", noh:true });
+      req.session.errorMessage = "User not Found"
+      res.redirect("otplogin");
     }
   } catch (error) {
     console.log(error.message);
@@ -932,8 +933,7 @@ const loginWithOtp = async (req, res) => {
     const otp = req.body.otp;
     const userData = await User.findOne({ Email: email });
 
-    console.log(userData, " logged at 918");
-
+    
     if (userData && userData.Block == false) {
       console.log("logged at 921");
       if (userData.token == otp) {
@@ -976,6 +976,11 @@ const orderMainLoad = async (req, res) => {
     console.log(error.message);
   }
 };
+
+// host: "smtp.gmail.com",
+// port: 587,
+// secure: false,
+// requireTLS: true,
 
 module.exports = {
   loadLanding,
