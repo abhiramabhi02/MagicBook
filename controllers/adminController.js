@@ -205,7 +205,7 @@ const deleteProduct = async (req, res) => {
 };
 
 //edit product page
-const editProduct = async (req, res) => {
+const   editProduct = async (req, res) => {
   try {
     const id = req.query.id;
     const categoryData = await Category.find();
