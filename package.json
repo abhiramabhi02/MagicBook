@@ -19,6 +19,7 @@
     "express-handlebars": "^6.0.6",
     "express-hbs": "^2.4.0",
     "express-session": "^1.17.3",
+    "git": "^0.1.5",
     "hbs": "^4.2.0",
     "html2pdf": "^0.0.11",
     "moment": "^2.29.4",
@@ -31,6 +32,5 @@
     "randomstring": "^1.2.3",
     "razorpay": "^2.8.4"
   },
-  "devDependencies": {},
   "description": ""
 }
